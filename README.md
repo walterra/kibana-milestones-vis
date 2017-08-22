@@ -33,6 +33,7 @@ bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/relea
   - Make sure you have the right time span selected (upper right corner)
   - In the Top Hits configuration, choose a field for "Sort On" which you want to use for the labels. By default it just picks timestamps.
   - While Elasticsearch/Kibana aggregates the data automatically, in the options panel you still can set an additional client side custom aggregation which will affect the grouping and label style. This also allows grouping by a year's quarters which isn't available as a bucket size with Elasticsearch's native aggregations.
+- The visualization works best with sparse data. While there is some optimization going on to distribute labels, you might get irritating results with data which results in too many labels.
 
 ## Development
 
