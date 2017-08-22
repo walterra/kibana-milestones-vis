@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="55px" height="11px" viewBox="0 0 55 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-milestones</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-milestones" transform="translate(2.000000, 3.000000)" fill-rule="nonzero" fill="#000000">
+            <rect id="1" x="0" y="0" width="51" height="5" rx="2.5"></rect>
+        </g>
+        <circle id="Oval" stroke="#000000" stroke-width="3" fill="#FFFFFF" cx="5.5" cy="5.5" r="3.5"></circle>
+        <circle id="Oval-Copy" stroke="#000000" stroke-width="3" fill="#FFFFFF" cx="49.5" cy="5.5" r="3.5"></circle>
+        <circle id="Oval-Copy-2" stroke="#000000" stroke-width="3" fill="#FFFFFF" cx="27.5" cy="5.5" r="3.5"></circle>
+    </g>
+</svg>
