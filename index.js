@@ -1,9 +1,9 @@
 export default function (kibana) {
   return new kibana.Plugin({
-    name: 'milestones',
+    name: 'kibana-milestones-vis',
     require: ['kibana', 'elasticsearch'],
     uiExports: {
-      visTypes: ['plugins/milestones/milestones_vis']
+      visTypes: ['plugins/kibana-milestones-vis/milestones_vis']
     },
     config(Joi) {
       return Joi.object({
