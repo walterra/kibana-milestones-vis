@@ -24,6 +24,12 @@ bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/relea
 bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/releases/download/v1.0.0-alpha1/kibana-milestones-vis-1.0.0-alpha1.zip
 ```
 
+### Installing by first downloading a zipped release
+
+- Head over to https://github.com/elastic/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/elastic/kibana-milestones-vis/releases/download/v1.0.0-alpha1/kibana-milestones-vis-1.0.0-alpha1.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-1.0.0-alpha1.zip`, then `npm run start`
+-
+
 ## Usage
 
 - Create a Kibana index pattern including a time filter.
