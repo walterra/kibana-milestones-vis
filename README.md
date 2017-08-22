@@ -10,6 +10,8 @@ This is work in progress. The plugin should work with Kibana version `7.0.0-alph
 
 ## Installation
 
+This might not work for you yet since the GitHub repository is set to private. Use the instructions below related to [Development](#development) instead.
+
 ### General Installation Pattern
 
 ```
