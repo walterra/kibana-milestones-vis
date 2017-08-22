@@ -39,6 +39,10 @@ bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/relea
 
 See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
 
+  - `npm install`
+
+    Fetches and installs the plugins dependencies.
+
   - `npm start`
 
     Start kibana and have it include this plugin
