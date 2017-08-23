@@ -41,6 +41,14 @@ bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/relea
   - While Elasticsearch/Kibana aggregates the data automatically, in the options panel you still can set an additional client side custom aggregation which will affect the grouping and label style. This also allows grouping by a year's quarters which isn't available as a bucket size with Elasticsearch's native aggregations.
 - The visualization works best with sparse data. While there is some optimization going on to distribute labels, you might get irritating results with data which results in too many labels.
 
+## Wishlist/Upcoming
+
+- Automatic Labels for each timeline when there are multiple ones
+- More intuitive initial setup of the visualization
+- Option to switch to a vertical view and/or option to scroll
+- Use something more performant than the `top_hits` aggregation
+- Consolidate aggregation options (X-Axis and Options panel)
+
 ## Development
 
 See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
