@@ -39,20 +39,28 @@ VisTypesRegistryProvider.register(function MilestonesProvider(Private) {
       schemas: new Schemas([
         {
           group: 'metrics',
-          name: 'top_hits',
-          title: 'Top Hits',
+          name: 'milestone_title',
+          title: 'Milestone Title',
           min: 1,
           max: 1,
-          aggFilter: ['top_hits'],
+          aggFilter: ['terms'],
           defaults: [
-            { schema: 'top_hits', type: 'top_hits',  params: { field: '_score', aggregate: { val: 'min' }, size: 3, sortOrder: 'asc' } }
+            {
+              schema: 'milestone_title',
+              type: 'terms',
+              params: {
+                size: 3,
+                order: 'asc',
+                orderBy: '_term'
+              }
+            }
           ]
         },
         {
           group: 'buckets',
           name: 'segment',
           title: 'X-Axis',
-          min: 0,
+          min: 1,
           max: 1,
           aggFilter: 'date_histogram',
           defaults: [
@@ -62,7 +70,7 @@ VisTypesRegistryProvider.register(function MilestonesProvider(Private) {
         {
           group: 'buckets',
           name: 'categories',
-          title: 'Categorization',
+          title: 'Categories',
           min: 0,
           max: 1,
           aggFilter: ['terms']

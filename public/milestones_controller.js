@@ -57,16 +57,16 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
     }
 
     const categoryAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.categories, 'id'));
-    const hitsAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.top_hits, 'id'));
+    const titleAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.milestone_title, 'id'));
 
     if (typeof response.aggregations[histogramAggId] !== 'undefined') {
       const buckets = response.aggregations[histogramAggId].buckets;
 
       const events = buckets.reduce((p, bucket) => {
-        bucket[hitsAggId].hits.hits.map(hit => {
+        bucket[titleAggId].buckets.map(title => {
           p.push({
             timestamp: bucket.key_as_string.split('.')[0],
-            text: hit.sort[0]
+            text: title.key
           });
         });
         return p;
@@ -78,10 +78,10 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
       _.each(buckets, bucket => {
         if (typeof bucket[histogramAggId] !== 'undefined') {
           const events = bucket[histogramAggId].buckets.reduce((p, nestedBucket) => {
-            nestedBucket[hitsAggId].hits.hits.map(hit => {
+            nestedBucket[titleAggId].buckets.map(title => {
               p.push({
                 timestamp: nestedBucket.key_as_string.split('.')[0],
-                text: hit.sort[0]
+                text: title.key
               });
             });
             return p;
