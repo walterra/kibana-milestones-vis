@@ -86,7 +86,10 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
             });
             return p;
           }, []);
-          data.push(events);
+          data.push({
+            category: bucket.key,
+            entries: events
+          });
         }
       });
       if (data.length > 0) {

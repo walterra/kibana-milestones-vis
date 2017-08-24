@@ -8,7 +8,7 @@ class Milestones extends EventEmitter {
     super();
 
     //DOM
-    this._element = domNode;
+    this._element = d3.select(domNode).select('.milestones-vis-wrapper').node();
     this.resize();
 
     //SETTING (non-configurable)
@@ -117,9 +117,16 @@ class Milestones extends EventEmitter {
     }
 
     this._DOMisUpdating = true;
+    // hacky to remove the whole DOM, library needs to fix proper updates
+    d3.select(this._element).selectAll('.milestones').remove();
+
+    const data = job.data;
+    const useCategories = (Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined');
 
     const milestonesLayoutGenerator = milestones(this._element)
       .mapping({
+        category: useCategories ? 'category' : undefined,
+        entries: useCategories ? 'entries' : undefined,
         timestamp: this._options.mapping_timestamp,
         text: this._options.mapping_text
       })
