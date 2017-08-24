@@ -50,8 +50,8 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
       return;
     }
 
-    const AggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.segment, 'id'));
-    if (!AggId || !response.aggregations) {
+    const histogramAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.segment, 'id'));
+    if (!histogramAggId || !response.aggregations) {
       milestones.setData([]);
       return;
     }
@@ -59,8 +59,8 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
     const categoryAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.categories, 'id'));
     const hitsAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.top_hits, 'id'));
 
-    if (typeof response.aggregations[AggId] !== 'undefined') {
-      const buckets = response.aggregations[AggId].buckets;
+    if (typeof response.aggregations[histogramAggId] !== 'undefined') {
+      const buckets = response.aggregations[histogramAggId].buckets;
 
       const events = buckets.reduce((p, bucket) => {
         bucket[hitsAggId].hits.hits.map(hit => {
@@ -76,8 +76,8 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
       const buckets = response.aggregations[categoryAggId].buckets;
       const data = [];
       _.each(buckets, bucket => {
-        if (typeof bucket[AggId] !== 'undefined') {
-          const events = bucket[AggId].buckets.reduce((p, nestedBucket) => {
+        if (typeof bucket[histogramAggId] !== 'undefined') {
+          const events = bucket[histogramAggId].buckets.reduce((p, nestedBucket) => {
             nestedBucket[hitsAggId].hits.hits.map(hit => {
               p.push({
                 timestamp: nestedBucket.key_as_string.split('.')[0],
