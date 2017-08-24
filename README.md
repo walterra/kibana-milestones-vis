@@ -1,7 +1,5 @@
 # Milestones Visualization for Kibana
 
-This Kibana plugin provides a milestones timeline visualization.
-
 ![Tarantino'n'Rodriguez Movie Timeline](resources/tarantino-rodriguez-movies.png)
 
 ## Compatibility
@@ -10,18 +8,12 @@ This is work in progress. The plugin should work with Kibana version `7.0.0-alph
 
 ## Installation
 
-Using the install options which fetch the plugin directly from GitHub might not work for you yet since the GitHub repository is set to private. Use the instructions to download a zipped release first.
+Using the general installation pattern which fetches the plugin directly from GitHub doesn't work yet since the GitHub repository is set to private. Use the instructions to download a zipped release instead or use the development setup.
 
 ### General Installation Pattern
 
 ```
 bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/releases/download/v<version>/kibana-milestones-vis-<version>.zip
-```
-
-### Installing the first alpha release
-
-```
-bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/releases/download/v1.0.0-alpha1/kibana-milestones-vis-1.0.0-alpha1.zip
 ```
 
 ### Installing by first downloading a zipped release
