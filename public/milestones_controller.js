@@ -21,26 +21,6 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
   });
 
   milestones.on('renderComplete', () => {
-    const truncatedMessage = containerNode.querySelector('.milestones-truncated-message');
-    const incompleteMessage = containerNode.querySelector('.milestones-incomplete-message');
-
-    if (!$scope.vis.aggs[0] || !$scope.vis.aggs[1]) {
-      incompleteMessage.style.display = 'none';
-      truncatedMessage.style.display = 'none';
-      return;
-    }
-
-    const bucketName = containerNode.querySelector('.milestones-custom-label');
-    bucketName.innerHTML = `${$scope.vis.aggs[0].makeLabel()} - ${$scope.vis.aggs[1].makeLabel()}`;
-    truncatedMessage.style.display = truncated ? 'block' : 'none';
-
-    const status = milestones.getStatus();
-    if (Milestones.STATUS.COMPLETE === status) {
-      incompleteMessage.style.display = 'none';
-    } else if (Milestones.STATUS.INCOMPLETE === status) {
-      incompleteMessage.style.display = 'block';
-    }
-
     $scope.renderComplete();
   });
 
@@ -55,6 +35,8 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
       milestones.setData([]);
       return;
     }
+
+    milestones.setInterval(_.first($scope.vis.aggs.bySchemaName.segment).buckets.getInterval().esUnit);
 
     const categoryAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.categories, 'id'));
     const titleAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName.milestone_title, 'id'));
@@ -92,14 +74,9 @@ module.controller('KbnMilestonesController', function ($scope, $element, Private
           });
         }
       });
-      if (data.length > 0) {
-        milestones.setData(data);
-      }
+      milestones.setData(data);
     }
   });
-
-
-  $scope.$watch('vis.params', (options) => milestones.setOptions(options));
 
   $scope.$watch('resize', () => {
     milestones.resize();

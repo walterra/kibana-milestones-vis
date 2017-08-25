@@ -8,8 +8,20 @@ class Milestones extends EventEmitter {
     super();
 
     //DOM
-    this._element = d3.select(domNode).select('.milestones-vis-wrapper').node();
+    this._element = domNode;
     this.resize();
+
+    //MAPPING
+    this._intervalMapping = {
+      s: 'second',
+      m: 'minute',
+      h: 'hour',
+      d: 'day',
+      w: 'week',
+      M: 'month',
+      q: 'quarter',
+      y: 'year'
+    };
 
     //SETTING (non-configurable)
 
@@ -18,10 +30,10 @@ class Milestones extends EventEmitter {
       mapping_timestamp: 'timestamp',
       mapping_text: 'text',
       optimize: true,
-      parseTime: '%Y-%m-%dT%H:%M:%S',
-      aggregate: 'minute'
+      parseTime: '%Y-%m-%dT%H:%M:%S'
     };
     this._optionsAsString = null;
+    this._interval = 'minute';
 
     //DATA
     this._data = null;
@@ -53,13 +65,13 @@ class Milestones extends EventEmitter {
     this._data = data;
   }
 
+  setInterval(interval) {
+    this._interval = this._intervalMapping[interval];
+  }
+
   destroy() {
     clearTimeout(this._setTimeoutId);
     this._element.innerHTML = '';
-  }
-
-  getStatus() {
-    return Milestones.STATUS.COMPLETE; // : Milestones.STATUS.INCOMPLETE;
   }
 
   _isJobRunning() {
@@ -131,7 +143,7 @@ class Milestones extends EventEmitter {
         text: this._options.mapping_text
       })
       .parseTime(this._options.parseTime)
-      .aggregateBy(this._options.aggregate)
+      .aggregateBy(this._interval)
       .optimize(this._options.optimize);
 
     await new Promise((resolve) => {
@@ -175,7 +187,5 @@ class Milestones extends EventEmitter {
   }
 
 }
-
-Milestones.STATUS = { COMPLETE: 0, INCOMPLETE: 1 };
 
 export default Milestones;

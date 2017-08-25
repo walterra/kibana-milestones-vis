@@ -1,6 +1,5 @@
 import './milestones.less';
 import './milestones_controller';
-import './milestones_vis_params';
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
 import { CATEGORY } from 'ui/vis/vis_category';
 import { VisSchemasProvider } from 'ui/vis/editors/default/schemas';
@@ -25,17 +24,13 @@ VisTypesRegistryProvider.register(function MilestonesProvider(Private) {
         optimize: true,
         // e.g. "2017-02-07T03:00:00.000+01:00"
         parseTime: '%Y-%m-%dT%H:%M:%S',
-        aggregate: 'day',
         anotherOption: true
       },
       template: milestonesTemplate,
     },
     responseHandler: 'none',
     editorConfig: {
-      collections: {
-        aggregate: ['second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year']
-      },
-      optionsTemplate: '<milestones-vis-params></milestones-vis-params>',
+      collections: {},
       schemas: new Schemas([
         {
           group: 'metrics',
