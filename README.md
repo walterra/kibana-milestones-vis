@@ -35,11 +35,12 @@ bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/relea
 
 ## Wishlist/Upcoming
 
-- Automatic Labels for each timeline when there are multiple ones
+- ~~Automatic Labels for each timeline when there are multiple ones~~
 - More intuitive initial setup of the visualization
 - Option to switch to a vertical view and/or option to scroll
-- Use something more performant than the `top_hits` aggregation
-- Consolidate aggregation options (X-Axis and Options panel)
+- ~~Use something more performant than the `top_hits` aggregation~~
+- ~~Consolidate aggregation options (X-Axis and Options panel)~~
+- Optimize label placement when there are lots of label closer to the boundary of the timeline
 
 ## Development
 
