@@ -1,12 +1,9 @@
 import _ from 'lodash';
-// import { AggResponseIndexProvider } from 'ui/agg_response/index';
 
-const MilestonesResponseHandlerProvider = function (Private) {
-  // const aggResponse = Private(AggResponseIndexProvider);
-
+const MilestonesResponseHandlerProvider = function () {
   return {
     name: 'milestones',
-    handler: function (vis, response) {
+    handler: (vis, response) => {
       return new Promise((resolve) => {
         if (!response) {
           resolve();
@@ -19,36 +16,51 @@ const MilestonesResponseHandlerProvider = function (Private) {
           return;
         }
 
-        const categoryAggId = _.first(_.pluck(vis.aggs.bySchemaName.categories, 'id'));
-        const titleAggId = _.first(_.pluck(vis.aggs.bySchemaName.milestone_title, 'id'));
+        const splitAggId = _.first(_.pluck(vis.aggs.bySchemaName.milestone_split, 'id'));
+        const labelsAggId = _.first(_.pluck(vis.aggs.bySchemaName.milestone_labels, 'id'));
         const interval = _.first(vis.aggs.bySchemaName.segment).buckets.getInterval().esUnit;
 
+        let data;
         if (typeof response.aggregations[histogramAggId] !== 'undefined') {
           const buckets = response.aggregations[histogramAggId].buckets;
 
-          const events = buckets.reduce((p, bucket) => {
-            bucket[titleAggId].buckets.map(title => {
+          data = buckets.reduce((p, bucket) => {
+            if (typeof bucket[labelsAggId] !== 'undefined') {
+              bucket[labelsAggId].buckets.map(label => {
+                p.push({
+                  timestamp: bucket.key_as_string.split('.')[0],
+                  text: label.key
+                });
+              });
+            } else {
               p.push({
                 timestamp: bucket.key_as_string.split('.')[0],
-                text: title.key
+                text: bucket.key_as_string.split('.')[0]
               });
-            });
+            }
             return p;
           }, []);
-          resolve({ data: events, interval });
+          resolve({ data, interval });
           return;
-        } else if (typeof response.aggregations[categoryAggId] !== 'undefined') {
-          const buckets = response.aggregations[categoryAggId].buckets;
-          const data = [];
+        } else if (typeof response.aggregations[splitAggId] !== 'undefined') {
+          const buckets = response.aggregations[splitAggId].buckets;
+          data = [];
           _.each(buckets, bucket => {
             if (typeof bucket[histogramAggId] !== 'undefined') {
               const events = bucket[histogramAggId].buckets.reduce((p, nestedBucket) => {
-                nestedBucket[titleAggId].buckets.map(title => {
+                if (typeof nestedBucket[labelsAggId] !== 'undefined') {
+                  nestedBucket[labelsAggId].buckets.map(label => {
+                    p.push({
+                      timestamp: nestedBucket.key_as_string.split('.')[0],
+                      text: label.key
+                    });
+                  });
+                } else {
                   p.push({
                     timestamp: nestedBucket.key_as_string.split('.')[0],
-                    text: title.key
+                    text: nestedBucket.key_as_string.split('.')[0]
                   });
-                });
+                }
                 return p;
               }, []);
               data.push({

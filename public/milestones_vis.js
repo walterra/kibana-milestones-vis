@@ -28,29 +28,10 @@ function MilestonesProvider(Private) {
       collections: {},
       schemas: new Schemas([
         {
-          group: 'metrics',
-          name: 'milestone_title',
-          title: 'Milestone Title',
-          min: 1,
-          max: 1,
-          aggFilter: ['terms'],
-          defaults: [
-            {
-              schema: 'milestone_title',
-              type: 'terms',
-              params: {
-                size: 3,
-                order: 'asc',
-                orderBy: '_term'
-              }
-            }
-          ]
-        },
-        {
           group: 'buckets',
           name: 'segment',
           title: 'X-Axis',
-          min: 1,
+          min: 0,
           max: 1,
           aggFilter: 'date_histogram',
           defaults: [
@@ -59,12 +40,19 @@ function MilestonesProvider(Private) {
         },
         {
           group: 'buckets',
-          name: 'categories',
-          title: 'Categories',
+          name: 'milestone_labels',
+          title: 'Milestone Labels',
+          min: 0,
+          max: 1
+        },
+        {
+          group: 'buckets',
+          name: 'milestone_split',
+          title: 'Split Chart',
           min: 0,
           max: 1,
-          aggFilter: ['terms']
-        },
+          aggFilter: ['significant_terms', 'terms']
+        }
       ])
     },
     hierarchicalData: true

@@ -27,14 +27,14 @@ class Milestones {
       parseTime: '%Y-%m-%dT%H:%M:%S'
     };
 
-    d3.select(this.el).classed('milestones-vis', true);
   }
 
   render(visData, status) {
-    const element = this.el;
     return new Promise(resolve => {
       // hacky to remove the whole DOM, library needs to fix proper updates
-      d3.select(element).selectAll('.milestones').remove();
+      d3.select(this.el).selectAll('.milestones-vis').remove();
+      const element = d3.select(this.el).append('div')
+        .classed('milestones-vis', true).node();
 
       const data = visData.data || [];
       const useCategories = (Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined');
@@ -64,7 +64,6 @@ class Milestones {
   }
 
   destroy() {
-    console.log('destroy milestones');
     this.el.innerHTML = '';
   }
 }
