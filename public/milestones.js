@@ -2,7 +2,6 @@ import d3 from 'd3';
 import milestones from 'milestones';
 
 class Milestones {
-
   constructor(el, vis) {
     this.vis = vis;
     this.el = el;
@@ -23,8 +22,8 @@ class Milestones {
       mapping_timestamp: 'timestamp',
       mapping_text: 'text',
       optimize: true,
-      // e.g. "2017-02-07T03:00:00.000+01:00"
-      parseTime: '%Y-%m-%dT%H:%M:%S'
+      // e.g. "2015-01-26T06:40:36.181"
+      parseTime: '%Y-%m-%dT%H:%M:%S.%L'
     };
 
   }

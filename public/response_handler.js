@@ -1,5 +1,12 @@
 import _ from 'lodash';
 
+function timeFormat(timestamp) {
+  const tzoffset = (new Date(timestamp)).getTimezoneOffset() * 60000; //offset in milliseconds
+  const localISOTime = (new Date(timestamp - tzoffset)).toISOString().slice(0,-1);
+  // e.g. '2015-01-26T06:40:36.181'
+  return localISOTime;
+}
+
 const MilestonesResponseHandlerProvider = function () {
   return {
     name: 'milestones',
@@ -28,13 +35,13 @@ const MilestonesResponseHandlerProvider = function () {
             if (typeof bucket[labelsAggId] !== 'undefined') {
               bucket[labelsAggId].buckets.map(label => {
                 p.push({
-                  timestamp: bucket.key_as_string.split('.')[0],
+                  timestamp: timeFormat(bucket.key),
                   text: label.key
                 });
               });
             } else {
               p.push({
-                timestamp: bucket.key_as_string.split('.')[0],
+                timestamp: timeFormat(bucket.key),
                 text: bucket.key_as_string.split('.')[0]
               });
             }
@@ -51,13 +58,13 @@ const MilestonesResponseHandlerProvider = function () {
                 if (typeof nestedBucket[labelsAggId] !== 'undefined') {
                   nestedBucket[labelsAggId].buckets.map(label => {
                     p.push({
-                      timestamp: nestedBucket.key_as_string.split('.')[0],
+                      timestamp: timeFormat(nestedBucket.key),
                       text: label.key
                     });
                   });
                 } else {
                   p.push({
-                    timestamp: nestedBucket.key_as_string.split('.')[0],
+                    timestamp: timeFormat(nestedBucket.key),
                     text: nestedBucket.key_as_string.split('.')[0]
                   });
                 }
