@@ -2,24 +2,26 @@
 
 ![Tarantino'n'Rodriguez Movie Timeline](resources/tarantino-rodriguez-movies.png)
 
-## Compatibility
-
-This is work in progress. The plugin should work with Kibana version `7.0.0-alpha1`.
-
 ## Installation
 
-Using the general installation pattern which fetches the plugin directly from GitHub doesn't work yet since the GitHub repository is set to private. Use the instructions to download a zipped release instead or use the development setup.
+### Compatibility
+
+To get a version of this plugin which is compatible with your version of Kibana, have a look at the releases page on GitHub: https://github.com/walterra/kibana-milestones-vis/releases
+
+In the "Assets" section of each release you'll find a zipped build of the plugin which you can use. These zip files are named in the following way: `kibana-<kibana-version>-milestones-vis-<plugin-version>.zip`.
 
 ### General Installation Pattern
 
+Run the following from within your Kibana folder:
+
 ```
-bin/kibana-plugin install https://github.com/elastic/kibana-milestones-vis/releases/download/v<version>/kibana-milestones-vis-<version>.zip
+bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v<version>/kibana-milestones-vis-<version>.zip
 ```
 
 ### Installing by first downloading a zipped release
 
-- Head over to https://github.com/elastic/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/elastic/kibana-milestones-vis/releases/download/v1.0.0-alpha1/kibana-milestones-vis-1.0.0-alpha1.zip
-- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-1.0.0-alpha1.zip`, then `npm run start`
+- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v1.0.0-alpha3/kibana-6.1.1-milestones-vis-1.0.0-alpha3.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-6.1.1-milestones-vis-1.0.0-alpha3.zip`, then `npm run start`
 -
 
 ## Usage
