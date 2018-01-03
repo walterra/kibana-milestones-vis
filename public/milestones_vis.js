@@ -1,4 +1,5 @@
 import './milestones.less';
+import './milestones_vis_params';
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
 import { CATEGORY } from 'ui/vis/vis_category';
 import { VisSchemasProvider } from 'ui/vis/editors/default/schemas';
@@ -21,11 +22,18 @@ function MilestonesProvider(Private) {
     category: CATEGORY.TIME,
     visualization: Milestones,
     visConfig: {
-      defaults: {}
+      defaults: {
+        layout: {
+          showLabels: true
+        }
+      }
     },
     responseHandler: responseHandler,
     editorConfig: {
-      collections: {},
+      collections: {
+        showLabels: true
+      },
+      optionsTemplate: '<milestones-vis-params></milestones-vis-params>',
       schemas: new Schemas([
         {
           group: 'buckets',
