@@ -1,6 +1,6 @@
 # Milestones Visualization for Kibana
 
-![Tarantino'n'Rodriguez Movie Timeline](resources/tarantino-rodriguez-movies.png)
+![Movie Timelines](resources/kibana-milestones-vis.png)
 
 ## Installation
 
