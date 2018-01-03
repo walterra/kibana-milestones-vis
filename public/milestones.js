@@ -1,5 +1,5 @@
 import d3 from 'd3';
-import milestones from 'milestones';
+import milestones from 'd3-milestones';
 
 class Milestones {
   constructor(el, vis) {
