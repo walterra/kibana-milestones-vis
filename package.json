@@ -11,9 +11,10 @@
   "bugs": {
     "url": "https://github.com/elastic/kibana-milestones-vis/issues"
   },
-  "private": true,
-  "author": "Elastic",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
+  "contributors": [
+    "Walter Rafelsberger <walter.rafelsberger@elastic.co>"
+  ],
   "kibana": {
     "version": "6.2.0",
     "templateVersion": "7.2.2"
