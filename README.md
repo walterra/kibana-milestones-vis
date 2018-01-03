@@ -2,6 +2,8 @@
 
 ![Movie Timelines](resources/kibana-milestones-vis.png)
 
+This plugin is a wrapper for the stand-alone library `d3-milestones` (https://github.com/walterra/d3-milestones) to make its functionality available within Kibana.
+
 ## Installation
 
 ### Compatibility
