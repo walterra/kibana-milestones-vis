@@ -46,6 +46,7 @@ class Milestones {
           text: this._options.mapping_text
         })
         .parseTime(this._options.parseTime)
+        .useLabels(this.vis.params.layout.showLabels)
         .optimize(this._options.optimize);
 
       if (typeof visData.interval !== 'undefined') {
