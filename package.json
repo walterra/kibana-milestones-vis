@@ -15,7 +15,7 @@
   "author": "Elastic",
   "license": "UNLICENSED",
   "kibana": {
-    "version": "6.1.1",
+    "version": "6.1.2",
     "templateVersion": "7.2.2"
   },
   "scripts": {
