@@ -24,6 +24,7 @@ function MilestonesProvider(Private) {
     visConfig: {
       defaults: {
         layout: {
+          cropTimerange: false,
           showLabels: true,
           distribution: 'top-bottom'
         }

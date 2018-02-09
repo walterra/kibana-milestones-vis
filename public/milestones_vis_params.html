@@ -1,12 +1,26 @@
 <div class="euiForm">
   <div class="euiFormRow">
     <label class="euiFormLabel" style="margin-bottom: 8px">Milestones Options</label>
+
     <div class="euiCheckbox euiCheckboxGroup__item">
       <input id="kbn-ms-toggle-labels" type="checkbox" class="euiCheckbox__input" value="on" ng-model="vis.params.layout.showLabels" />
       <div class="euiCheckbox__square">
         <div class="euiCheckbox__check"></div>
       </div>
-      <label for="kbn-ms-toggle-labels" class="euiCheckbox__label">Render Labels</label>
+      <label for="kbn-ms-toggle-labels" class="euiCheckbox__label">Render labels</label>
+    </div>
+
+    <div class="euiCheckbox euiCheckboxGroup__item">
+      <input id="kbn-ms-toggle-timecrop" type="checkbox" class="euiCheckbox__input" value="on" ng-model="vis.params.layout.cropTimerange"
+      />
+      <div class="euiCheckbox__square">
+        <div class="euiCheckbox__check"></div>
+      </div>
+      <label for="kbn-ms-toggle-timecrop" class="euiCheckbox__label">Crop time range</label>
+      <div class="euiFormHelpText euiFormRow__text">
+        If this option is enabled, the timeline's start and endpoint will be cropped to the first and last event.
+        Otherwise the full time range set by Kibana will be used.
+      </div>
     </div>
   </div>
 
