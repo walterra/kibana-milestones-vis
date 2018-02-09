@@ -47,6 +47,7 @@ class Milestones {
         })
         .parseTime(this._options.parseTime)
         .useLabels(this.vis.params.layout.showLabels)
+        .distribution(this.vis.params.layout.distribution)
         .optimize(this._options.optimize);
 
       if (typeof visData.interval !== 'undefined') {
