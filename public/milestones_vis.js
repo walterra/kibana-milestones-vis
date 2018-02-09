@@ -53,10 +53,7 @@ function MilestonesProvider(Private) {
           max: 1,
           aggFilter: 'terms',
           defaults: [
-            {
-              schema: 'milestone_labels',
-              type: 'terms'
-            }
+            { type: 'terms', schema: 'milestone_labels', params: { field: '_index' } }
           ]
         },
         {
