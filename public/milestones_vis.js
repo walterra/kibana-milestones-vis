@@ -24,15 +24,13 @@ function MilestonesProvider(Private) {
     visConfig: {
       defaults: {
         layout: {
-          showLabels: true
+          showLabels: true,
+          distribution: 'top-bottom'
         }
       }
     },
     responseHandler: responseHandler,
     editorConfig: {
-      collections: {
-        showLabels: true
-      },
       optionsTemplate: '<milestones-vis-params></milestones-vis-params>',
       schemas: new Schemas([
         {
@@ -51,7 +49,14 @@ function MilestonesProvider(Private) {
           name: 'milestone_labels',
           title: 'Milestone Labels',
           min: 0,
-          max: 1
+          max: 1,
+          aggFilter: 'terms',
+          defaults: [
+            {
+              schema: 'milestone_labels',
+              type: 'terms'
+            }
+          ]
         },
         {
           group: 'buckets',
@@ -59,7 +64,7 @@ function MilestonesProvider(Private) {
           title: 'Split Chart',
           min: 0,
           max: 1,
-          aggFilter: ['significant_terms', 'terms']
+          aggFilter: 'terms'
         }
       ])
     },

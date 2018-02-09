@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "d3": "3.5.6",
-    "d3-milestones": "1.0.0-alpha7",
+    "d3-milestones": "1.0.0-alpha10",
     "lodash": "3.10.1"
   }
 }
