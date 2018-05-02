@@ -1,8 +1,15 @@
 export default kibana => new kibana.Plugin({
-  require: ['kibana', 'elasticsearch'],
+  id: 'kibana-milestones-vis',
+  require: ['elasticsearch'],
+
   uiExports: {
-    visTypes: [
-      'plugins/kibana-milestones-vis/milestones_vis'
-    ]
-  }
+    visTypes: ['plugins/kibana-milestones-vis/milestones_vis']
+  },
+
+  config(Joi) {
+    return Joi.object({
+      enabled: Joi.boolean().default(true),
+    }).default();
+  },
+
 });

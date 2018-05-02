@@ -2,7 +2,7 @@ import './milestones.less';
 import './milestones_vis_params';
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
 import { CATEGORY } from 'ui/vis/vis_category';
-import { VisSchemasProvider } from 'ui/vis/editors/default/schemas';
+import { Schemas } from 'ui/vis/editors/default/schemas';
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
 import image from './images/icon-milestones.svg';
 
@@ -11,8 +11,7 @@ import { MilestonesResponseHandlerProvider } from './response_handler';
 
 function MilestonesProvider(Private) {
   const VisFactory = Private(VisFactoryProvider);
-  const Schemas = Private(VisSchemasProvider);
-  const responseHandler = Private(MilestonesResponseHandlerProvider).handler;
+  const responseHandler = MilestonesResponseHandlerProvider().handler;
 
   return VisFactory.createBaseVisualization({
     name: 'milestones',

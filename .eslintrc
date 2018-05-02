@@ -1,2 +1,2 @@
 ---
-extends: "@elastic/kibana"
+extends: "@elastic/eslint-config-kibana"
