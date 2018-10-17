@@ -4,7 +4,7 @@
 
 ## Compatibility
 
-This version of the plugin is compatible with Kibana version `6.1.2`.
+This version of the plugin is compatible with Kibana version `6.1.3`.
 
 ## Installation
 
