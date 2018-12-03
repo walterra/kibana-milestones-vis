@@ -5,6 +5,7 @@ import { CATEGORY } from 'ui/vis/vis_category';
 import { Schemas } from 'ui/vis/editors/default/schemas';
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
 import image from './images/icon-milestones.svg';
+import { Status } from 'ui/vis/update_status';
 
 import Milestones from './milestones';
 import { MilestonesResponseHandlerProvider } from './response_handler';
@@ -19,6 +20,7 @@ function MilestonesProvider(Private) {
     image,
     description: 'A timeline of events with labels.',
     category: CATEGORY.TIME,
+    requiresUpdateStatus: [Status.PARAMS, Status.RESIZE, Status.DATA],
     visualization: Milestones,
     visConfig: {
       defaults: {
@@ -34,12 +36,23 @@ function MilestonesProvider(Private) {
       optionsTemplate: '<milestones-vis-params></milestones-vis-params>',
       schemas: new Schemas([
         {
+          group: 'metrics',
+          name: 'metric',
+          title: 'Dummy Metric Aggregation',
+          min: 1,
+          max: 1,
+          aggFilter: ['count'],
+          defaults: [
+            { schema: 'metric', type: 'count' }
+          ]
+        },
+        {
           group: 'buckets',
           name: 'segment',
           title: 'X-Axis',
           min: 0,
           max: 1,
-          aggFilter: 'date_histogram',
+          aggFilter: ['date_histogram'],
           defaults: [
             { schema: 'segment', type: 'date_histogram' }
           ]
@@ -50,7 +63,7 @@ function MilestonesProvider(Private) {
           title: 'Milestone Labels',
           min: 0,
           max: 1,
-          aggFilter: 'terms',
+          aggFilter: ['terms'],
           defaults: [
             { type: 'terms', schema: 'milestone_labels', params: { field: '_index' } }
           ]
@@ -61,16 +74,12 @@ function MilestonesProvider(Private) {
           title: 'Split Chart',
           min: 0,
           max: 1,
-          aggFilter: 'terms'
+          aggFilter: ['terms']
         }
       ])
-    },
-    hierarchicalData: true
+    }
   });
 }
 
 // register the provider with the visTypes registry
 VisTypesRegistryProvider.register(MilestonesProvider);
-
-// export the provider so that the visType can be required with Private()
-export default MilestonesProvider;
