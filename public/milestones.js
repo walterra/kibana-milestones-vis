@@ -28,7 +28,7 @@ class Milestones {
 
   }
 
-  render(visData, status) {
+  render(visData) {
     return new Promise(resolve => {
       // hacky to remove the whole DOM, library needs to fix proper updates
       d3.select(this.el).selectAll('.milestones-vis').remove();

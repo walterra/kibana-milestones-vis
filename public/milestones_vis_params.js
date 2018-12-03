@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { uiModules } from 'ui/modules';
 import milestonesVisParamsTemplate from './milestones_vis_params.html';
 

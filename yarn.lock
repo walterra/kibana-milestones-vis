@@ -1455,6 +1455,11 @@ eslint-plugin-mocha@^4.9.0:
   dependencies:
     ramda "^0.25.0"
 
+eslint-plugin-no-unsanitized@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-unsanitized/-/eslint-plugin-no-unsanitized-3.0.2.tgz#83c6fcf8e34715112757e03dd4ee436dce29ed45"
+  integrity sha512-JnwpoH8Sv4QOjrTDutENBHzSnyYtspdjtglYtqUtAHe6f6LLKqykJle+UwFPg23GGwt5hI3amS9CRDezW8GAww==
+
 eslint-plugin-prefer-object-spread@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-object-spread/-/eslint-plugin-prefer-object-spread-1.2.1.tgz#27fb91853690cceb3ae6101d9c8aecc6a67a402c"
@@ -2804,11 +2809,6 @@ lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
   integrity sha512-eWw5r+PYICtEBgrBE5hhlT6aAa75f411bgDz/ZL2KZqYV03USvucsxcHUIlGTDTECs1eunpI7HOV7U+WLDvNdQ==
-
-lodash@3.10.1:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-  integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
 
 lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@~4.17.10:
   version "4.17.11"
