@@ -1,18 +1,23 @@
 import './milestones.less';
 import './milestones_vis_params';
+// eslint-disable-next-line import/no-unresolved
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
+// eslint-disable-next-line import/no-unresolved
 import { CATEGORY } from 'ui/vis/vis_category';
+// eslint-disable-next-line import/no-unresolved
 import { Schemas } from 'ui/vis/editors/default/schemas';
+// eslint-disable-next-line import/no-unresolved
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
 import image from './images/icon-milestones.svg';
+// eslint-disable-next-line import/no-unresolved
 import { Status } from 'ui/vis/update_status';
 
 import Milestones from './milestones';
-import { MilestonesResponseHandlerProvider } from './response_handler';
+import { milestonesResponseHandlerProvider } from './response_handler';
 
 function MilestonesProvider(Private) {
   const VisFactory = Private(VisFactoryProvider);
-  const responseHandler = MilestonesResponseHandlerProvider().handler;
+  const responseHandler = milestonesResponseHandlerProvider().handler;
 
   return VisFactory.createBaseVisualization({
     name: 'milestones',
