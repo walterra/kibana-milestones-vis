@@ -38,10 +38,18 @@ class Milestones {
       const data = visData.data || [];
       const useCategories = (Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined');
 
+      let categorizedData;
+
+      if (useCategories) {
+        categorizedData = d3.nest()
+          .key(d => d.category)
+          .entries(data);
+      }
+
       const milestonesLayoutGenerator = milestones(element)
         .mapping({
-          category: useCategories ? 'category' : undefined,
-          entries: useCategories ? 'entries' : undefined,
+          category: useCategories ? 'key' : undefined,
+          entries: useCategories ? 'values' : undefined,
           timestamp: this._options.mapping_timestamp,
           text: this._options.mapping_text
         })
@@ -54,7 +62,7 @@ class Milestones {
         milestonesLayoutGenerator.aggregateBy(this._intervalMapping[visData.interval]);
       }
 
-      milestonesLayoutGenerator.render(data);
+      milestonesLayoutGenerator.render((useCategories) ? categorizedData : data);
       resolve('done rendering');
     });
   }

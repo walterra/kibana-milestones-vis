@@ -7,78 +7,49 @@ function timeFormat(timestamp) {
   return localISOTime;
 }
 
+function getColumnIdBySchemaName(columns, schemaName) {
+  const column = columns.find((c) => {
+    return c.aggConfig.__schema.name === schemaName;
+  });
+  return column && column.id || undefined;
+}
+
 const MilestonesResponseHandlerProvider = function () {
   return {
     name: 'milestones',
-    handler: (vis, response) => {
+    handler: (response) => {
       return new Promise((resolve) => {
-        if (!response) {
+        if (!response || !response.columns) {
           resolve();
           return;
         }
 
-        const histogramAggId = _.first(_.pluck(vis.aggs.bySchemaName.segment, 'id'));
-        if (!histogramAggId || !response.aggregations) {
+        const histogramAggId = getColumnIdBySchemaName(response.columns, 'segment');
+        if (!histogramAggId || !response.rows) {
           resolve();
           return;
         }
 
-        const splitAggId = _.first(_.pluck(vis.aggs.bySchemaName.milestone_split, 'id'));
-        const labelsAggId = _.first(_.pluck(vis.aggs.bySchemaName.milestone_labels, 'id'));
-        const interval = _.first(vis.aggs.bySchemaName.segment).buckets.getInterval().esUnit;
+        const splitAggId = getColumnIdBySchemaName(response.columns, 'milestone_split');
+        const labelsAggId = getColumnIdBySchemaName(response.columns, 'milestone_labels');
 
-        let data;
-        if (typeof response.aggregations[histogramAggId] !== 'undefined') {
-          const buckets = response.aggregations[histogramAggId].buckets;
+        const histogramColumn = response.columns.find(c => c.id === histogramAggId);
+        const interval = histogramColumn.aggConfig.buckets.getInterval().esUnit;
 
-          data = buckets.reduce((p, bucket) => {
-            if (typeof bucket[labelsAggId] !== 'undefined') {
-              bucket[labelsAggId].buckets.map(label => {
-                p.push({
-                  timestamp: timeFormat(bucket.key),
-                  text: label.key
-                });
-              });
-            } else {
-              p.push({
-                timestamp: timeFormat(bucket.key),
-                text: bucket.key_as_string.split('.')[0]
-              });
-            }
-            return p;
-          }, []);
-          resolve({ data, interval });
-          return;
-        } else if (typeof response.aggregations[splitAggId] !== 'undefined') {
-          const buckets = response.aggregations[splitAggId].buckets;
-          data = [];
-          _.each(buckets, bucket => {
-            if (typeof bucket[histogramAggId] !== 'undefined') {
-              const events = bucket[histogramAggId].buckets.reduce((p, nestedBucket) => {
-                if (typeof nestedBucket[labelsAggId] !== 'undefined') {
-                  nestedBucket[labelsAggId].buckets.map(label => {
-                    p.push({
-                      timestamp: timeFormat(nestedBucket.key),
-                      text: label.key
-                    });
-                  });
-                } else {
-                  p.push({
-                    timestamp: timeFormat(nestedBucket.key),
-                    text: nestedBucket.key_as_string.split('.')[0]
-                  });
-                }
-                return p;
-              }, []);
-              data.push({
-                category: bucket.key,
-                entries: events
-              });
-            }
-          });
-          resolve({ data, interval });
-          return;
-        }
+        const data = response.rows.map((row) => {
+          const entry = {
+            timestamp: timeFormat(row[histogramAggId]),
+            text: row[labelsAggId]
+          };
+
+          if (typeof row[splitAggId] !== 'undefined') {
+            entry.category = row[splitAggId];
+          }
+
+          return entry;
+        });
+
+        resolve({ data, interval });
       });
     }
   };
