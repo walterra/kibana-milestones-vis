@@ -1,8 +1,6 @@
-import _ from 'lodash';
-
 function timeFormat(timestamp) {
   const tzoffset = (new Date(timestamp)).getTimezoneOffset() * 60000; //offset in milliseconds
-  const localISOTime = (new Date(timestamp - tzoffset)).toISOString().slice(0,-1);
+  const localISOTime = (new Date(timestamp - tzoffset)).toISOString().slice(0, -1);
   // e.g. '2015-01-26T06:40:36.181'
   return localISOTime;
 }
@@ -14,7 +12,7 @@ function getColumnIdBySchemaName(columns, schemaName) {
   return column && column.id || undefined;
 }
 
-const MilestonesResponseHandlerProvider = function () {
+const milestonesResponseHandlerProvider = function () {
   return {
     name: 'milestones',
     handler: (response) => {
@@ -55,4 +53,4 @@ const MilestonesResponseHandlerProvider = function () {
   };
 };
 
-export { MilestonesResponseHandlerProvider };
+export { milestonesResponseHandlerProvider };
