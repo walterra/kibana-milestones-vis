@@ -1026,10 +1026,10 @@ d3-interpolate@1:
   dependencies:
     d3-color "1"
 
-d3-milestones@1.0.0-alpha10:
-  version "1.0.0-alpha10"
-  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.0.0-alpha10.tgz#14d69a010cc92fb48adc00293e24d6b174fa6d05"
-  integrity sha1-FNaaAQzJL7SK3AApPiTWsXT6bQU=
+d3-milestones@1.0.0-alpha12:
+  version "1.0.0-alpha12"
+  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.0.0-alpha12.tgz#871fdfa5a2f1e3e9238d7a736bc0510c1470585e"
+  integrity sha512-KlQ/UbJnlrreidEmYRNzrt0KCa1UvPfFMAhjskZJOxFVW3pOiA7u1BDvN7tmErgnzBQDZyp32xSNExXKTPG40A==
   dependencies:
     d3-array "^1.2.0"
     d3-collection "^1.0.4"
