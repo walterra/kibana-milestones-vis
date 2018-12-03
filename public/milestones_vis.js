@@ -33,6 +33,9 @@ function MilestonesProvider(Private) {
     },
     responseHandler: responseHandler,
     editorConfig: {
+      collections: {
+        distributions: ['top-bottom', 'top', 'bottom']
+      },
       optionsTemplate: '<milestones-vis-params></milestones-vis-params>',
       schemas: new Schemas([
         {
