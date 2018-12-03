@@ -27,14 +27,19 @@
   <div class="euiFormRow">
     <label class="euiFormLabel" style="margin-bottom: 8px">Label arrangement</label>
     <div class="euiFormControlLayout">
-      <select class="euiSelect" ng-model="vis.params.layout.distribution" ng-options="x for x in ['top-bottom', 'top', 'bottom']" />
-      <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
-        <defs>
-          <path id="arrow_down-a" d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"></path>
-        </defs>
-        <use fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down-a"></use>
-      </svg>
+      <div class="euiFormControlLayout__childrenWrapper">
+        <select class="euiSelect" ng-model="vis.params.layout.distribution" ng-options="x for x in ['top-bottom', 'top', 'bottom']" />
+        <div class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
+          <span class="euiFormControlLayoutCustomIcon">
+            <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+              <defs>
+                <path id="arrow_down-a" d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"></path>
+              </defs>
+              <use fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down-a"></use>
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
