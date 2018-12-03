@@ -22,8 +22,8 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 
 ### Installing by first downloading a zipped release
 
-- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.4.2/kibana-milestones-vis-6.4.2.zip
-- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.4.2.zip`, then `npm run start`
+- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.4.3/kibana-milestones-vis-6.4.3.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.4.3.zip`, then `npm run start`
 
 
 ## Usage
