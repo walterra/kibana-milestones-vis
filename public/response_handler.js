@@ -7,7 +7,7 @@ function timeFormat(timestamp) {
 
 function getColumnIdBySchemaName(columns, schemaName) {
   const column = columns.find((c) => {
-    return c.aggConfig.__schema.name === schemaName;
+    return c.aggConfig.__schema === schemaName;
   });
   return column && column.id || undefined;
 }
