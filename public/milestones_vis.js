@@ -3,8 +3,6 @@ import './milestones_vis_params';
 // eslint-disable-next-line import/no-unresolved
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
 // eslint-disable-next-line import/no-unresolved
-import { CATEGORY } from 'ui/vis/vis_category';
-// eslint-disable-next-line import/no-unresolved
 import { Schemas } from 'ui/vis/editors/default/schemas';
 // eslint-disable-next-line import/no-unresolved
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
@@ -24,7 +22,6 @@ function MilestonesProvider(Private) {
     title: 'Milestones',
     image,
     description: 'A timeline of events with labels.',
-    category: CATEGORY.TIME,
     requiresUpdateStatus: [Status.PARAMS, Status.RESIZE, Status.DATA],
     visualization: Milestones,
     visConfig: {

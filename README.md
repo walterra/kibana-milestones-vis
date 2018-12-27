@@ -17,7 +17,7 @@ The releases of this plugin are synced with Kibana's release cycle. In the "Asse
 Run the following from within your Kibana folder:
 
 ```
-bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v<version>/kibana-milestones-vis-<version>.zip
+bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v7.0.0-alpha1/kibana-milestones-vis-7.0.0-alpha1.zip
 ```
 
 ### Installing by first downloading a zipped release
