@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "d3": "3.5.6",
-    "d3-milestones": "1.0.0-alpha13"
+    "d3-milestones": "1.0.0-alpha14"
   },
   "resolutions": {
     "fstream": "^1.0.12",
