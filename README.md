@@ -17,13 +17,13 @@ The releases of this plugin are synced with Kibana's release cycle. In the "Asse
 Run the following from within your Kibana folder:
 
 ```
-bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.7/kibana-milestones-vis-6.8.7.zip
+bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.8/kibana-milestones-vis-6.8.8.zip
 ```
 
 ### Installing by first downloading a zipped release
 
-- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.7/kibana-milestones-vis-6.8.7.zip
-- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.8.7.zip`, then `npm run start`
+- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.8/kibana-milestones-vis-6.8.8.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.8.8.zip`, then `npm run start`
 
 
 ## Usage
@@ -47,30 +47,4 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 
 ## Development
 
-See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
-
-  - `npm install`
-
-    Fetches and installs the plugins dependencies.
-
-  - `npm start`
-
-    Start kibana and have it include this plugin
-
-  - `npm start -- --config kibana.yml`
-
-    You can pass any argument that you would normally send to `bin/kibana` by putting them after `--` when running `npm start`
-
-  - `npm run build`
-
-    Build a distributable archive
-
-  - `npm run test:browser`
-
-    Run the browser tests in a real web browser
-
-  - `npm run test:server`
-
-    Run the server tests using mocha
-
-For more information about any of these commands run `npm run ${task} -- --help`.
+See the [DEVELOPMENT.md](DEVELOPMENT.md).
