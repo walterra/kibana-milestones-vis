@@ -36,8 +36,11 @@ This is the process for producing a release for a new minor version that doesn't
 # Move to the directory of you Kibana git checkout
 cd ~/dev/kibana-6.x-git/kibana
 
+# Fetch the latest releases
+git fetch --all --tags
+
 # Check out the release in Kibana
-git checkout v6.8.10
+git checkout v6.8.11
 
 # Switch to updated node-js if necessary
 nvm use
@@ -67,14 +70,14 @@ yarn build
 
 # Next, download and install the corresponding Kibana release to test the build via
 # https://www.elastic.co/downloads/past-releases/kibana-6-8-8
-mkdir ~/dev/kibana-6.8.10-release
-cd ~/dev/kibana-6.8.10-release/
-curl -O https://artifacts.elastic.co/downloads/kibana/kibana-6.8.10-darwin-x86_64.tar.gz
-gunzip -c kibana-6.8.10-darwin-x86_64.tar.gz | tar xopf -
-cd kibana-6.8.10-darwin-x86_64
+mkdir ~/dev/kibana-6.8.11-release
+cd ~/dev/kibana-6.8.11-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-6.8.11-darwin-x86_64.tar.gz
+gunzip -c kibana-6.8.11-darwin-x86_64.tar.gz | tar xopf -
+cd kibana-6.8.11-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-6.x-git/kibana-extra/kibana-milestones-vis/build/kibana-milestones-vis-6.8.10.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-6.x-git/kibana-extra/kibana-milestones-vis/build/kibana-milestones-vis-6.8.11.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
@@ -82,17 +85,18 @@ cd kibana-6.8.10-darwin-x86_64
 
 # If everything works, finally the time has come to create the release on Github.
 cd ~/dev/kibana-6.x-git/kibana-extra/kibana-milestones-vis
+git add DEVELOPMENT.md
 git add README.md
 git add package.json
-git commit -m "Bump version to 6.8.10."
-git tag v6.8.10
+git commit -m "Bump version to 6.8.11."
+git tag v6.8.11
 git push origin 6.8
 git push --tags
 
 # On Github, edit the new release at
-# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v6.8.10
-# Use `Kibana v6.8.10 compatibility release.` as the release text.
-# Add the build file `kibana-milestones-vis-6.8.10.zip` to the releases' binaries.
+# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v6.8.11
+# Use `Kibana v6.8.11 compatibility release.` as the release text.
+# Add the build file `kibana-milestones-vis-6.8.11.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-6.x-git/kibana-extra/plugin_tmp
