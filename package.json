@@ -1,27 +1,28 @@
 {
-  "name": "kibana-milestones-vis",
-  "version": "7.0.0-alpha2",
+  "name": "kibana_milestones_vis",
+  "version": "0.0.0",
   "description": "A d3 based timeline visualization kibana plugin.",
   "main": "index.js",
-  "homepage": "https://github.com/elastic/kibana-milestones-vis",
+  "homepage": "https://github.com/walterra/kibana-milestones-vis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elastic/kibana-milestones-vis.git"
+    "url": "https://github.com/walterra/kibana-milestones-vis.git"
   },
   "bugs": {
-    "url": "https://github.com/elastic/kibana-milestones-vis/issues"
+    "url": "https://github.com/walterra/kibana-milestones-vis/issues"
   },
   "license": "Apache-2.0",
   "contributors": [
     "Walter Rafelsberger <walter.rafelsberger@elastic.co>"
   ],
   "kibana": {
-    "version": "7.0.0-alpha2",
+    "version": "8.0.0",
     "templateVersion": "1.0.0"
   },
   "scripts": {
-    "preinstall": "node ../../kibana/preinstall_check",
-    "kbn": "node ../../kibana/scripts/kbn",
+    "preinstall": "node ../../preinstall_check",
+    "kbn": "node ../../scripts/kbn",
+    "es": "node ../../scripts/es",
     "lint": "eslint .",
     "start": "plugin-helpers start",
     "test:server": "plugin-helpers test:server",
@@ -29,29 +30,25 @@
     "build": "plugin-helpers build"
   },
   "devDependencies": {
-    "@elastic/eslint-config-kibana": "link:../../kibana/packages/eslint-config-kibana",
-    "@elastic/eslint-import-resolver-kibana": "link:../../kibana/packages/kbn-eslint-import-resolver-kibana",
-    "@kbn/plugin-helpers": "link:../../kibana/packages/kbn-plugin-helpers",
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.6.0",
-    "eslint-plugin-babel": "^5.2.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.22.1",
-    "eslint-plugin-mocha": "^5.2.0",
+    "@elastic/eslint-config-kibana": "link:../../packages/eslint-config-kibana",
+    "@elastic/eslint-import-resolver-kibana": "link:../../packages/kbn-eslint-import-resolver-kibana",
+    "@kbn/expect": "link:../../packages/kbn-expect",
+    "@kbn/plugin-helpers": "link:../../packages/kbn-plugin-helpers",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-mocha": "^5.3.0",
     "eslint-plugin-no-unsanitized": "^3.0.2",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
-    "eslint-plugin-react": "^7.11.1",
-    "expect.js": "^0.3.1"
+    "eslint-plugin-react": "^7.12.4"
   },
   "dependencies": {
     "d3": "3.5.6",
     "d3-milestones": "1.0.0-alpha14"
   },
   "resolutions": {
-    "eslint-utils": "^1.4.1",
-    "fstream": "^1.0.12",
-    "js-yaml": "^3.13.1",
-    "lodash": "^4.17.13",
-    "lodash.mergewith": "^4.6.2"
   }
 }

@@ -9,6 +9,23 @@ uiModules.get('kibana/table_vis')
       template: milestonesVisParamsTemplate,
       link: function ($scope) {
         $scope.config = $scope.vis.type.editorConfig;
+
+        $scope.config.collections.labelFields = $scope.vis.indexPattern.fields
+          .filter(field => field.type === 'string')
+          .map(field => field.name);
+
+        $scope.config.collections.categoryFields = [
+          '--- None selected ---',
+          ...$scope.config.collections.labelFields,
+        ];
+
+        if ($scope.vis.params.labelField === undefined) {
+          $scope.vis.params.labelField = $scope.config.collections.labelFields[0];
+        }
+
+        if ($scope.vis.params.categoryField === undefined) {
+          $scope.vis.params.categoryField = $scope.config.collections.categoryFields[0];
+        }
       }
     };
   });
