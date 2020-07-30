@@ -1,15 +1,17 @@
-export default function (kibana) {
-  return new kibana.Plugin({
-    require: ['elasticsearch'],
-    name: 'kibana-milestones-vis',
-    uiExports: {
-      visTypes: ['plugins/kibana-milestones-vis/milestones_vis']
-    },
+import { resolve } from 'path';
 
-    config(Joi) {
-      return Joi.object({
-        enabled: Joi.boolean().default(true),
-      }).default();
-    },
-  });
-}
+export default kibana => new kibana.Plugin({
+  id: 'kibana_milestones_vis',
+  require: ['elasticsearch'],
+
+  uiExports: {
+    visTypes: ['plugins/kibana_milestones_vis/milestones_vis_type'],
+    styleSheetPaths: resolve(__dirname, 'public/index.scss'),
+  },
+
+  config: (Joi) => Joi.object({
+    enabled: Joi.boolean().default(true),
+    enableExternalUrls: Joi.boolean().default(false)
+  }).default(),
+
+});

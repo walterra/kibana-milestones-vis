@@ -1,34 +1,9 @@
 <div class="euiForm">
   <div class="euiFormRow">
-    <label class="euiFormLabel" style="margin-bottom: 8px">Milestones Options</label>
-
-    <div class="euiCheckbox euiCheckboxGroup__item">
-      <input id="kbn-ms-toggle-labels" type="checkbox" class="euiCheckbox__input" value="on" ng-model="vis.params.layout.showLabels" />
-      <div class="euiCheckbox__square">
-        <div class="euiCheckbox__check"></div>
-      </div>
-      <label for="kbn-ms-toggle-labels" class="euiCheckbox__label">Render labels</label>
-    </div>
-
-    <div class="euiCheckbox euiCheckboxGroup__item">
-      <input id="kbn-ms-toggle-timecrop" type="checkbox" class="euiCheckbox__input" value="on" ng-model="vis.params.layout.cropTimerange"
-      />
-      <div class="euiCheckbox__square">
-        <div class="euiCheckbox__check"></div>
-      </div>
-      <label for="kbn-ms-toggle-timecrop" class="euiCheckbox__label">Crop time range</label>
-      <div class="euiFormHelpText euiFormRow__text">
-        If this option is enabled, the timeline's start and endpoint will be cropped to the first and last event.
-        Otherwise the full time range set by Kibana will be used.
-      </div>
-    </div>
-  </div>
-
-  <div class="euiFormRow">
-    <label class="euiFormLabel" style="margin-bottom: 8px">Label arrangement</label>
+    <label class="euiFormLabel" style="margin-bottom: 8px">Label Field</label>
     <div class="euiFormControlLayout">
       <div class="euiFormControlLayout__childrenWrapper">
-        <select class="euiSelect" ng-model="vis.params.layout.distribution" ng-options="x for x in config.collections.distributions" />
+        <select class="euiSelect" ng-model="vis.params.labelField" ng-options="x for x in config.collections.labelFields" />
         <div class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
           <span class="euiFormControlLayoutCustomIcon">
             <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
@@ -40,6 +15,83 @@
           </span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="euiFormRow">
+    <label class="euiFormLabel" style="margin-bottom: 8px">Category Field</label>
+    <div class="euiFormControlLayout">
+      <div class="euiFormControlLayout__childrenWrapper">
+        <select class="euiSelect" ng-model="vis.params.categoryField" ng-options="x for x in config.collections.categoryFields" />
+        <div class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
+          <span class="euiFormControlLayoutCustomIcon">
+            <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+              <defs>
+                <path id="arrow_down-a" d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"></path>
+              </defs>
+              <use fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down-a"></use>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="euiFormRow">
+    <label class="euiFormLabel" style="margin-bottom: 8px">Time interval</label>
+    <div class="euiFormControlLayout">
+      <div class="euiFormControlLayout__childrenWrapper">
+        <select class="euiSelect" ng-model="vis.params.interval" ng-options="x for x in config.collections.interval" />
+        <div class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
+          <span class="euiFormControlLayoutCustomIcon">
+            <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+              <defs>
+                <path id="arrow_down-a" d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"></path>
+              </defs>
+              <use fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down-a"></use>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="euiFormRow">
+    <label class="euiFormLabel" style="margin-bottom: 8px">Max Documents</label>
+    <div class="euiFormControlLayout">
+      <div class="euiFormControlLayout__childrenWrapper">
+        <input class="euiFieldText" type="text" ng-model="vis.params.maxDocuments" />
+      </div>
+    </div>
+  </div>
+
+  <div class="euiFormRow">
+    <label class="euiFormLabel" style="margin-bottom: 8px">Label arrangement</label>
+    <div class="euiFormControlLayout">
+      <div class="euiFormControlLayout__childrenWrapper">
+        <select class="euiSelect" ng-model="vis.params.distribution" ng-options="x for x in config.collections.distributions" />
+        <div class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
+          <span class="euiFormControlLayoutCustomIcon">
+            <svg class="euiIcon euiFormControlLayout__icon euiFormControlLayout__icon--right euiIcon--medium" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+              <defs>
+                <path id="arrow_down-a" d="M13.069 5.157L8.384 9.768a.546.546 0 0 1-.768 0L2.93 5.158a.552.552 0 0 0-.771 0 .53.53 0 0 0 0 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 0 0 0-.76.552.552 0 0 0-.771 0z"></path>
+              </defs>
+              <use fill-rule="nonzero" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow_down-a"></use>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="euiFormRow">
+    <label class="euiFormLabel" style="margin-bottom: 8px">Options</label>
+    <div class="euiCheckbox euiCheckboxGroup__item">
+      <input id="kbn-ms-toggle-labels" type="checkbox" class="euiCheckbox__input" value="on" ng-model="vis.params.showLabels" />
+      <div class="euiCheckbox__square">
+        <div class="euiCheckbox__check"></div>
+      </div>
+      <label for="kbn-ms-toggle-labels" class="euiCheckbox__label">Render labels</label>
     </div>
   </div>
 </div>
