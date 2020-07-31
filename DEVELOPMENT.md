@@ -40,7 +40,7 @@ cd ~/dev/kibana-7.x-git/kibana
 git fetch --all --tags
 
 # Check out the release in Kibana
-git checkout v7.2.0
+git checkout v7.2.1
 
 # Switch to updated node-js if necessary
 nvm use
@@ -69,33 +69,33 @@ yarn kbn bootstrap
 yarn build
 
 # Next, download and install the corresponding Kibana release to test the build via
-mkdir ~/dev/kibana-7.2.0-release
-cd ~/dev/kibana-7.2.0-release/
-curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.2.0-darwin-x86_64.tar.gz
-gunzip -c kibana-7.2.0-darwin-x86_64.tar.gz | tar xopf -
-cd kibana-7.2.0-darwin-x86_64
+mkdir ~/dev/kibana-7.2.1-release
+cd ~/dev/kibana-7.2.1-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.2.1-darwin-x86_64.tar.gz
+gunzip -c kibana-7.2.1-darwin-x86_64.tar.gz | tar xopf -
+cd kibana-7.2.1-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-7.x-git/kibana/plugins/kibana_milestones_vis/build/kibana_milestones_vis-7.2.0.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-7.x-git/kibana/plugins/kibana_milestones_vis/build/kibana_milestones_vis-7.2.1.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
 ./bin/kibana
 
 # If everything works, finally the time has come to create the release on Github.
-cd ~/dev/kibana-7.x-git/kibana-extra/kibana-milestones-vis
+cd ~/dev/kibana-7.x-git/kibana/plugins/kibana_milestones_vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
-git commit -m "Bump version to 7.2.0."
-git tag v7.2.0
+git commit -m "Bump version to 7.2.1."
+git tag v7.2.1
 git push origin 7.2
 git push --tags
 
 # On Github, edit the new release at
-# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.2.0
-# Use `Kibana v7.2.0 compatibility release.` as the release text.
-# Add the build file `kibana-milestones-vis-7.2.0.zip` to the releases' binaries.
+# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.2.1
+# Use `Kibana v7.2.1 compatibility release.` as the release text.
+# Add the build file `kibana_milestones_vis-7.2.1.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-7.x-git/kibana-extra/plugin_tmp
