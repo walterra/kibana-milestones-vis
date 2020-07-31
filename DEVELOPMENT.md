@@ -22,7 +22,7 @@ See the [kibana contributing guide](https://github.com/elastic/kibana/blob/maste
 
     Run the browser tests in a real web browser
 
-  - `npm run test:server`
+  - `npm run test:mocha`
 
     Run the server tests using mocha
 
@@ -56,7 +56,7 @@ node scripts/generate_plugin plugin_tmp
 # kibana-extra/plugin_tmp/package.json
 
 # After checking/updating `package.json`, run bootstrap inside your plugin's directory
-cd ../kibana-extra/kibana-milestones-vis
+cd plugins/kibana_milestones_vis
 yarn kbn bootstrap
 
 # Update all files containing the previous version name to the new name
@@ -83,7 +83,7 @@ cd kibana-7.2.0-darwin-x86_64
 ./bin/kibana
 
 # If everything works, finally the time has come to create the release on Github.
-cd ~/dev/kibana-7.x-git/kibana-extra/kibana-milestones-vis
+cd ~/dev/kibana-7.x-git/kibana/plugins/kibana_milestones_vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
@@ -95,7 +95,7 @@ git push --tags
 # On Github, edit the new release at
 # https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.2.0
 # Use `Kibana v7.2.0 compatibility release.` as the release text.
-# Add the build file `kibana-milestones-vis-7.2.0.zip` to the releases' binaries.
+# Add the build file `kibana_milestones_vis-7.2.0.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-7.x-git/kibana-extra/plugin_tmp
