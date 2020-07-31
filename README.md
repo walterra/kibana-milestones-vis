@@ -10,20 +10,20 @@ This plugin is a wrapper for the stand-alone library `d3-milestones` (https://gi
 
 To get a version of this plugin which is compatible with your version of Kibana, have a look at the releases page on GitHub: https://github.com/walterra/kibana-milestones-vis/releases
 
-The releases of this plugin are synced with Kibana's release cycle. In the "Assets" section of each release you'll find a zipped build of the plugin which you can use. These zip files are named in the following way: `kibana-milestones-vis-<plugin-version>.zip`. The `plugin-version` should match the version of Kibana you're using.
+The releases of this plugin are synced with Kibana's release cycle. In the "Assets" section of each release you'll find a zipped build of the plugin which you can use. These zip files are named in the following way: `kibana_milestones_vis-<plugin-version>.zip`. The `plugin-version` should match the version of Kibana you're using.
 
 ### General Installation Pattern
 
 Run the following from within your Kibana folder:
 
 ```
-bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v7.0.0/kibana-milestones-vis-7.0.0.zip
+bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v7.2.0/kibana_milestones_vis-7.2.0.zip
 ```
 
 ### Installing by first downloading a zipped release
 
-- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v7.0.0/kibana-milestones-vis-7.0.0.zip
-- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-7.0.0.zip`, then `npm run start`
+- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v7.2.0/kibana_milestones_vis-7.2.0.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana_milestones_vis-7.2.0.zip`, then `npm run start`
 -
 
 ## Usage
@@ -48,30 +48,4 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 
 ## Development
 
-See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
-
-  - `npm install`
-
-    Fetches and installs the plugins dependencies.
-
-  - `npm start`
-
-    Start kibana and have it include this plugin
-
-  - `npm start -- --config kibana.yml`
-
-    You can pass any argument that you would normally send to `bin/kibana` by putting them after `--` when running `npm start`
-
-  - `npm run build`
-
-    Build a distributable archive
-
-  - `npm run test:browser`
-
-    Run the browser tests in a real web browser
-
-  - `npm run test:server`
-
-    Run the server tests using mocha
-
-For more information about any of these commands run `npm run ${task} -- --help`.
+See [DEVELOPMENT.md](DEVELOPMENT.md).
