@@ -31,10 +31,26 @@ class MilestonesVisualization {
     const element = d3.select(this.el).append('div')
       .classed('milestones-vis', true).node();
 
-    const data = (rawVisData.data || []).map(d => {
-      d.date = timeFormat(d.timestamp)
-      return d;
-    });
+    const data = (rawVisData.data || [])
+      // data prep
+      .map(d => {
+        if (d.text === undefined) {
+          d.text = '<no title>';
+        }
+        d.date = timeFormat(d.timestamp)
+        return d;
+      })
+      // remove duplicates
+      .reduce((p, c) => {
+        const exists = p.some(d => d.date === c.date && d.text === c.text);
+
+        if (!exists) {
+          p.push(c);
+        }
+
+        return p;
+      }, []);
+
     const useCategories = (Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined');
 
     let categorizedData;

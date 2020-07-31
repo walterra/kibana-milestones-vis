@@ -11,7 +11,7 @@ uiModules.get('kibana/table_vis')
         $scope.config = $scope.vis.type.editorConfig;
 
         $scope.config.collections.labelFields = $scope.vis.indexPattern.fields
-          .filter(field => field.type === 'string')
+          .filter(field => field.type === 'string' && !['_id', '_index', '_type'].includes(field.name))
           .map(field => field.name);
 
         $scope.config.collections.categoryFields = [

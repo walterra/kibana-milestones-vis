@@ -55,7 +55,7 @@ export function MilestonesVisRequestHandlerProvider(es, serviceSettings, config,
           script_fields: {
             milestones_timestamp: {
               script: {
-                source: `doc.${index.timeFieldName}.value.millis`
+                source: `doc["${index.timeFieldName}"].value.millis`
               }
             }
           },
