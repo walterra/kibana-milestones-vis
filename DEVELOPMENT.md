@@ -22,7 +22,7 @@ See the [kibana contributing guide](https://github.com/elastic/kibana/blob/maste
 
     Run the browser tests in a real web browser
 
-  - `npm run test:server`
+  - `npm run test:mocha`
 
     Run the server tests using mocha
 
@@ -56,7 +56,7 @@ node scripts/generate_plugin plugin_tmp
 # kibana-extra/plugin_tmp/package.json
 
 # After checking/updating `package.json`, run bootstrap inside your plugin's directory
-cd ../kibana-extra/kibana-milestones-vis
+cd plugins/kibana_milestones_vis
 yarn kbn bootstrap
 
 # Update all files containing the previous version name to the new name
@@ -83,13 +83,13 @@ cd kibana-8.0.0-darwin-x86_64
 ./bin/kibana
 
 # If everything works, finally the time has come to create the release on Github.
-cd ~/dev/kibana-master-git/kibana-extra/kibana-milestones-vis
+cd ~/dev/kibana-master-git/kibana/plugins/kibana_milestones_vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
 git commit -m "Bump version to 8.0.0."
 git tag v8.0.0
-git push origin 7.2
+git push origin master
 git push --tags
 
 # On Github, edit the new release at
