@@ -22,7 +22,7 @@ See the [kibana contributing guide](https://github.com/elastic/kibana/blob/maste
 
     Run the browser tests in a real web browser
 
-  - `npm run test:server`
+  - `npm run test:mocha`
 
     Run the server tests using mocha
 
@@ -56,7 +56,7 @@ node scripts/generate_plugin plugin_tmp
 # kibana-extra/plugin_tmp/package.json
 
 # After checking/updating `package.json`, run bootstrap inside your plugin's directory
-cd ../kibana-extra/kibana-milestones-vis
+cd plugins/kibana_milestones_vis
 yarn kbn bootstrap
 
 # Update all files containing the previous version name to the new name
