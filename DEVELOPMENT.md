@@ -36,6 +36,9 @@ This is the process for producing a release for a new minor version that doesn't
 # Move to the directory of you Kibana git checkout
 cd ~/dev/kibana-master-git/kibana
 
+# Fetch the latest releases
+git fetch --all --tags
+
 # Check out the release in Kibana
 git checkout v8.0.0
 
@@ -66,14 +69,14 @@ yarn kbn bootstrap
 yarn build
 
 # Next, download and install the corresponding Kibana release to test the build via
-# https://www.elastic.co/downloads/past-releases/kibana-6-8-8
 mkdir ~/dev/kibana-8.0.0-release
 cd ~/dev/kibana-8.0.0-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-8.0.0-darwin-x86_64.tar.gz
 gunzip -c kibana-8.0.0-darwin-x86_64.tar.gz | tar xopf -
 cd kibana-8.0.0-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-master-git/kibana-extra/kibana-milestones-vis/build/kibana-milestones-vis-8.0.0.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-master-git/kibana/plugins/kibana_milestones_vis/build/kibana_milestones_vis-8.0.0.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
@@ -81,11 +84,12 @@ cd kibana-8.0.0-darwin-x86_64
 
 # If everything works, finally the time has come to create the release on Github.
 cd ~/dev/kibana-master-git/kibana-extra/kibana-milestones-vis
+git add DEVELOPMENT.md
 git add README.md
 git add package.json
 git commit -m "Bump version to 8.0.0."
 git tag v8.0.0
-git push origin 6.8
+git push origin 7.2
 git push --tags
 
 # On Github, edit the new release at

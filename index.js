@@ -1,17 +1,22 @@
 import { resolve } from 'path';
+import { existsSync } from 'fs';
 
-export default kibana => new kibana.Plugin({
-  id: 'kibana_milestones_vis',
-  require: ['elasticsearch'],
+export default function (kibana) {
+  return new kibana.Plugin({
+    require: ['elasticsearch'],
+    name: 'kibana_milestones_vis',
+    uiExports: {
+      visTypes: ['plugins/kibana_milestones_vis/milestones_vis_type'],
+      styleSheetPaths: [
+        resolve(__dirname, 'public/index.scss'),
+        resolve(__dirname, 'public/index.css')
+      ].find(p => existsSync(p)),
+    },
 
-  uiExports: {
-    visTypes: ['plugins/kibana_milestones_vis/milestones_vis_type'],
-    styleSheetPaths: resolve(__dirname, 'public/index.scss'),
-  },
-
-  config: (Joi) => Joi.object({
-    enabled: Joi.boolean().default(true),
-    enableExternalUrls: Joi.boolean().default(false)
-  }).default(),
-
-});
+    config(Joi) {
+      return Joi.object({
+        enabled: Joi.boolean().default(true),
+      }).default();
+    },
+  });
+}
