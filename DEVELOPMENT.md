@@ -95,7 +95,7 @@ git push --tags
 # On Github, edit the new release at
 # https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v8.0.0
 # Use `Kibana v8.0.0 compatibility release.` as the release text.
-# Add the build file `kibana-milestones-vis-8.0.0.zip` to the releases' binaries.
+# Add the build file `kibana_milestones_vis-8.0.0.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-master-git/kibana-extra/plugin_tmp

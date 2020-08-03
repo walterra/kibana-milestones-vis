@@ -24,7 +24,6 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 
 - Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v8.0.0/kibana_milestones_vis-8.0.0.zip
 - Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana_milestones_vis-8.0.0.zip`, then `npm run start`
--
 
 ## Usage
 
