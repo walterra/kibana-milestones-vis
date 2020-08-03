@@ -1,8 +1,8 @@
 {
   "name": "kibana_milestones_vis",
-  "version": "7.2.0",
+  "version": "7.4.0",
   "description": "A d3 based timeline visualization kibana plugin.",
-  "main": "index.js",
+  "main": "index.ts",
   "homepage": "https://github.com/walterra/kibana-milestones-vis",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "Walter Rafelsberger <walter.rafelsberger@elastic.co>"
   ],
   "kibana": {
-    "version": "7.2.0",
+    "version": "7.4.0",
     "templateVersion": "1.0.0"
   },
   "scripts": {
@@ -34,8 +34,11 @@
     "@elastic/eslint-import-resolver-kibana": "link:../../packages/kbn-eslint-import-resolver-kibana",
     "@kbn/expect": "link:../../packages/kbn-expect",
     "@kbn/plugin-helpers": "link:../../packages/kbn-plugin-helpers",
+    "@typescript-eslint/eslint-plugin": "1.13.0",
+    "@typescript-eslint/parser": "1.13.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "6.1.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jest": "^22.4.1",
@@ -43,12 +46,17 @@
     "eslint-plugin-mocha": "^5.3.0",
     "eslint-plugin-no-unsanitized": "^3.0.2",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "1.18.2",
+    "typescript": "3.5.3"
   },
   "dependencies": {
     "d3": "3.5.6",
     "d3-milestones": "1.0.0-alpha14"
   },
-  "resolutions": {
+  "engines": {
+    "node": "10.15.2",
+    "yarn": "^1.10.1"
   }
 }
