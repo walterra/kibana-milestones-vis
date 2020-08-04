@@ -30,19 +30,16 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 - Create a Kibana index pattern including a time filter.
 - Go to `Visualize > Create New Visualization` and choose the Milestones visualization in the Time Series section.
 - In the next view, pick the index pattern you created.
-- You should end up on the visualization's page where you can tweak it:
-  - Make sure you have the right time span selected (upper right corner)
-  - In the Top Hits configuration, choose a field for "Sort On" which you want to use for the labels. By default it just picks timestamps.
-  - While Elasticsearch/Kibana aggregates the data automatically, in the options panel you still can set an additional client side custom aggregation which will affect the grouping and label style. This also allows grouping by a year's quarters which isn't available as a bucket size with Elasticsearch's native aggregations.
+- You should end up on the visualization's page where you can tweak it. Make sure you have the right time span selected (upper right corner).
 - The visualization works best with sparse data. While there is some optimization going on to distribute labels, you might get irritating results with data which results in too many labels.
 
-## Wishlist/Upcoming
+## Wishlist
 
 - ~~Automatic Labels for each timeline when there are multiple ones~~
-- More intuitive initial setup of the visualization
+- ~~More intuitive initial setup of the visualization~~ (7.3.0)
+- ~~Use something more performant than the `top_hits` aggregation~~ (7.3.0)
+- ~~Consolidate aggregation options (X-Axis and Options panel)~~ (7.3.0)
 - Option to switch to a vertical view and/or option to scroll
-- ~~Use something more performant than the `top_hits` aggregation~~
-- ~~Consolidate aggregation options (X-Axis and Options panel)~~
 - Optimize label placement when there are lots of label closer to the boundary of the timeline
 
 ## Development
