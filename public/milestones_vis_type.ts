@@ -20,6 +20,7 @@
 import { i18n } from '@kbn/i18n';
 // @ts-ignore
 import { Status } from 'ui/vis/update_status';
+// @ts-ignore
 import image from './images/icon-milestones.svg';
 
 import { createMilestonesVisualization } from './milestones_visualization';
