@@ -17,13 +17,13 @@ The releases of this plugin are synced with Kibana's release cycle. In the "Asse
 Run the following from within your Kibana folder:
 
 ```
-bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.14/kibana-milestones-vis-6.8.14.zip
+bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.15/kibana-milestones-vis-6.8.15.zip
 ```
 
 ### Installing by first downloading a zipped release
 
-- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.14/kibana-milestones-vis-6.8.14.zip
-- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.8.14.zip`, then `npm run start`
+- Head over to https://github.com/walterra/kibana-milestones-vis/releases and download the ZIP of the version you want to use, e.g. https://github.com/walterra/kibana-milestones-vis/releases/download/v6.8.15/kibana-milestones-vis-6.8.15.zip
+- Inside your kibana directory, run `bin/kibana-plugin install file:///<path-to-file>/kibana-milestones-vis-6.8.15.zip`, then `npm run start`
 
 
 ## Usage
