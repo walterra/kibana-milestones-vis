@@ -1400,10 +1400,10 @@ d3-interpolate@1:
   dependencies:
     d3-color "1"
 
-d3-milestones@1.0.0-alpha14:
-  version "1.0.0-alpha14"
-  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.0.0-alpha14.tgz#43c3051c9873766a90b1f0e901441a8fcf7ea505"
-  integrity sha512-wC8kiKFiP4Tr85SETG0EtmY+el0okVM9yTneKCfpl1u0ZkSyeSnJX1XmjDgq7/1BCvxHxcnN7/Z+pKHoXAx0Vw==
+d3-milestones@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.1.0.tgz#f8dab647717f68c461f03143b1d8b6a55539d26b"
+  integrity sha512-tTAXtniwD0fbbJ/buPjk8Hq+cgJNOhZ40oxFnyD+FwnaIc/J4qKMrXxZkxXwSjeFtXSIPED7c59IYuIEcf624A==
   dependencies:
     d3-array "^1.2.0"
     d3-collection "^1.0.4"
