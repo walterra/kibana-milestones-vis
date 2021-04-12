@@ -22,7 +22,6 @@ import {
   CoreSetup,
   CoreStart,
   Plugin,
-  UiSettingsClientContract,
 } from 'kibana/public';
 import { LegacyDependenciesPlugin, LegacyDependenciesPluginSetup } from './shim';
 import { VisualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public';
@@ -31,7 +30,7 @@ import { createMilestonesTypeDefinition } from './milestones_vis_type';
 
 /** @internal */
 export interface MilestonesVisualizationDependencies extends LegacyDependenciesPluginSetup {
-  uiSettings: UiSettingsClientContract;
+  core: CoreSetup;
 }
 
 /** @internal */
@@ -53,10 +52,10 @@ export class MilestonesPlugin implements Plugin<void, void> {
     { visualizations, __LEGACY }: MilestonesPluginSetupDependencies
   ) {
     const visualizationDependencies: Readonly<MilestonesVisualizationDependencies> = {
-      uiSettings: core.uiSettings,
+      core,
       ...(await __LEGACY.setup()),
     };
-    visualizations.types.registerVisualization(() => createMilestonesTypeDefinition(visualizationDependencies));
+    visualizations.types.createBaseVisualization(createMilestonesTypeDefinition(visualizationDependencies));
   }
 
   public start(core: CoreStart) {

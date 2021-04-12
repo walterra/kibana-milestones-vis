@@ -20,13 +20,14 @@
 import { PluginInitializerContext } from 'kibana/public';
 import { npSetup, npStart } from 'ui/new_platform';
 
-import { visualizations } from '../../../src/legacy/core_plugins/visualizations/public';
+import { setup as visualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public/np_ready/public/legacy';
 import { MilestonesPluginSetupDependencies } from './plugin';
 import { LegacyDependenciesPlugin } from './shim';
 import { plugin } from '.';
 
-const plugins: Readonly<MilestonesPluginSetupDependencies> = {
-  visualizations,
+const setupPlugins: Readonly<MilestonesPluginSetupDependencies> = {
+  visualizations: visualizationsSetup,
+
   // Temporary solution
   // It will be removed when all dependent services are migrated to the new platform.
   __LEGACY: new LegacyDependenciesPlugin(),
@@ -34,5 +35,5 @@ const plugins: Readonly<MilestonesPluginSetupDependencies> = {
 
 const pluginInstance = plugin({} as PluginInitializerContext);
 
-export const setup = pluginInstance.setup(npSetup.core, plugins);
+export const setup = pluginInstance.setup(npSetup.core, setupPlugins);
 export const start = pluginInstance.start(npStart.core);

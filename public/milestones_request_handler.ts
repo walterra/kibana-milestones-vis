@@ -17,21 +17,27 @@
  * under the License.
  */
 
-// @ts-ignore
-import { buildEsQuery, getEsQueryConfig } from '@kbn/es-query';
+import { esFilters, esQuery, TimeRange, Query } from '../../../src/plugins/data/public';
 
 import { NONE_SELECTED } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
 
+interface MilestonesRequestHandlerParams {
+  index: any;
+  query: Query;
+  filters: esFilters.Filter;
+  timeRange: TimeRange;
+  visParams: any;
+}
+
 export function createMilestonesRequestHandler({
   es,
-  uiSettings,
+  core: { uiSettings },
 }: MilestonesVisualizationDependencies) {
-  return async (req: any) => {
-    const { index, timeRange, filters, query, visParams } = req;
+  return async ({ index, timeRange, filters, query, visParams }: MilestonesRequestHandlerParams) => {
     const indexPatternTitle = index.title;
-    const esQueryConfigs = getEsQueryConfig(uiSettings);
-    const filtersDsl = buildEsQuery(undefined, query, filters, esQueryConfigs);
+    const esQueryConfigs = esQuery.getEsQueryConfig(uiSettings);
+    const filtersDsl = esQuery.buildEsQuery(undefined, query, filters, esQueryConfigs);
 
     if (visParams.labelField === undefined || visParams.labelField === NONE_SELECTED) {
       return {
