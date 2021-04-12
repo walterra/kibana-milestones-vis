@@ -23,5 +23,6 @@ export interface MilestonesVisParams {
   interval: 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';
   labelField: string;
   maxDocuments: number;
+  orientation: 'horizontal' | 'vertical';
   showLabels: boolean;
 }

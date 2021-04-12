@@ -104,6 +104,19 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
         setValue={setValue}
       />
 
+      <SelectOption
+        label={i18n.translate('visTypeMilestones.visParams.textOrientationLabel', {
+          defaultMessage: 'Orientation',
+        })}
+        options={vis.type.editorConfig.collections.orientation.map((i: string) => ({
+          value: i,
+          text: i,
+        }))}
+        paramName="orientation"
+        value={stateParams.orientation}
+        setValue={setValue}
+      />
+
       <SwitchOption
         label={i18n.translate('visTypeMilestones.visParams.renderLabelsToggleLabel', {
           defaultMessage: 'Render labels',

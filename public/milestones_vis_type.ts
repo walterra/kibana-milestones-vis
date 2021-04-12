@@ -51,6 +51,7 @@ export const createMilestonesTypeDefinition = (
         distribution: 'top-bottom',
         interval: 'minute',
         maxDocuments: 10,
+        orientation: 'horizontal',
         showLabels: true,
       },
     },
@@ -62,6 +63,7 @@ export const createMilestonesTypeDefinition = (
       collections: {
         distributions: ['top-bottom', 'top', 'bottom'],
         intervals: ['second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'],
+        orientation: ['horizontal', 'vertical'],
       },
       optionsTemplate: MilestonesOptions,
       schemas: [],
