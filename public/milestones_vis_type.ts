@@ -18,15 +18,15 @@
  */
 
 import { i18n } from '@kbn/i18n';
-// @ts-ignore
-import { Status } from 'ui/vis/update_status';
+
+import { Status } from '../../../src/legacy/core_plugins/visualizations/public';
+
 // @ts-ignore
 import image from './images/icon-milestones.svg';
 
 import { createMilestonesVisualization } from './milestones_visualization';
 import { createMilestonesRequestHandler } from './milestones_request_handler';
 
-import { visFactory } from '../../../src/legacy/core_plugins/visualizations/public';
 import { MilestonesOptions } from './components/milestones_options';
 import { NONE_SELECTED } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
@@ -37,7 +37,7 @@ export const createMilestonesTypeDefinition = (
   const requestHandler = createMilestonesRequestHandler(dependencies);
   const visualization = createMilestonesVisualization();
 
-  return visFactory.createBaseVisualization({
+  return {
     name: 'kibana_milestones_vis',
     title: i18n.translate('milestones.vis.milestonesTitle', { defaultMessage: 'Milestones' }),
     image,
@@ -68,5 +68,5 @@ export const createMilestonesTypeDefinition = (
       optionsTemplate: MilestonesOptions,
       schemas: [],
     },
-  });
+  };
 };

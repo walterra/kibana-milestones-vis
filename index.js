@@ -25,7 +25,7 @@ import { existsSync } from 'fs';
 const milestonesPluginInitializer = ({ Plugin }) =>
   new Plugin({
     id: 'kibana_milestones_vis',
-    require: ['kibana', 'elasticsearch', 'interpreter', 'data'],
+    require: ['kibana', 'elasticsearch', 'data'],
     publicDir: resolve(__dirname, 'public'),
     uiExports: {
       styleSheetPaths: [
@@ -33,9 +33,8 @@ const milestonesPluginInitializer = ({ Plugin }) =>
         resolve(__dirname, 'public/index.css'),
       ].find(p => existsSync(p)),
       hacks: [resolve(__dirname, 'public/legacy')],
-      injectDefaultVars: server => ({}),
     },
-    init: (server) => ({}),
+    init: () => ({}),
     config(Joi) {
       return Joi.object({
         enabled: Joi.boolean().default(true),
