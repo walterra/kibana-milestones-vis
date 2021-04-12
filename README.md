@@ -39,8 +39,8 @@ bin/kibana-plugin install https://github.com/walterra/kibana-milestones-vis/rele
 - ~~More intuitive initial setup of the visualization~~ (7.3.0)
 - ~~Use something more performant than the `top_hits` aggregation~~ (7.3.0)
 - ~~Consolidate aggregation options (X-Axis and Options panel)~~ (7.3.0)
-- Option to switch to a vertical view and/or option to scroll
-- Optimize label placement when there are lots of label closer to the boundary of the timeline
+- ~~Option to switch to a vertical view and/or option to scroll~~ (7.5.0)
+- ~~Optimize label placement when there are lots of label closer to the boundary of the timeline~~ (7.5.0)
 
 ## Development
 

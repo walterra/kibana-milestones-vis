@@ -115,7 +115,8 @@ export const createMilestonesVisualization = () =>
         .parseTime(this._options.parseTime)
         .useLabels(this.vis.params.showLabels)
         .distribution(this.vis.params.distribution)
-        .optimize(this._options.optimize);
+        .optimize(this._options.optimize)
+        .orientation(this.vis.params.orientation);
 
       if (typeof visParams.interval !== 'undefined') {
         milestonesLayoutGenerator.aggregateBy(visParams.interval);
