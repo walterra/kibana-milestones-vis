@@ -28,7 +28,7 @@ import { createMilestonesVisualization } from './milestones_visualization';
 import { createMilestonesRequestHandler } from './milestones_request_handler';
 
 import { MilestonesOptions } from './components/milestones_options';
-import { NONE_SELECTED } from './constants';
+import { NONE_SELECTED, SCORE_FIELD } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
 
 export const createMilestonesTypeDefinition = (
@@ -53,6 +53,8 @@ export const createMilestonesTypeDefinition = (
         maxDocuments: 10,
         orientation: 'horizontal',
         showLabels: true,
+        sortField: SCORE_FIELD,
+        sortOrder: 'desc'
       },
     },
     requiresUpdateStatus: [Status.PARAMS, Status.DATA],
@@ -64,6 +66,7 @@ export const createMilestonesTypeDefinition = (
         distributions: ['top-bottom', 'top', 'bottom'],
         intervals: ['second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'],
         orientation: ['horizontal', 'vertical'],
+        sortOrder: ['asc', 'desc'],
       },
       optionsTemplate: MilestonesOptions,
       schemas: [],

@@ -78,6 +78,9 @@ export function createMilestonesRequestHandler({
           },
         },
         size: visParams.maxDocuments,
+        sort : [
+          { [visParams.sortField] : {"order" : visParams.sortOrder} },
+        ],
       },
     };
 

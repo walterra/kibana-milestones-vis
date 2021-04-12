@@ -27,7 +27,7 @@ import {
   SelectOption,
   SwitchOption,
 } from '../../../../src/legacy/core_plugins/kbn_vislib_vis_types/public/components';
-import { NONE_SELECTED } from '../constants';
+import { NONE_SELECTED, SCORE_FIELD } from '../constants';
 import { MilestonesVisParams } from '../types';
 
 interface KibanaIndexPatternField {
@@ -44,6 +44,27 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
       )
       .map((field: KibanaIndexPatternField) => ({ value: field.name, text: field.name })),
   ];
+
+  const sortFieldOptions = [
+    { value: SCORE_FIELD, text: SCORE_FIELD },
+    ...vis.indexPattern.fields
+      .filter(
+        (field: KibanaIndexPatternField) =>
+          !['_id', '_index', '_score', '_source', '_type'].includes(field.name)
+      )
+      .map((field: KibanaIndexPatternField) => ({ value: field.name, text: field.name })),
+  ];
+
+  const sortOrderOptions = [
+    {
+      value: 'asc' as MilestonesVisParams['sortOrder'],
+      text: i18n.translate('visTypeMilestones.visParams.textSortOrderAscending', { defaultMessage: 'Ascending', })
+    },
+    {
+      value: 'desc' as MilestonesVisParams['sortOrder'],
+      text: i18n.translate('visTypeMilestones.visParams.textSortOrderDescending', { defaultMessage: 'Descending', })
+    },
+  ]
 
   return (
     <EuiPanel paddingSize="s">
@@ -64,6 +85,26 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
         options={fieldOptions}
         paramName="categoryField"
         value={stateParams.categoryField}
+        setValue={setValue}
+      />
+
+      <SelectOption
+        label={i18n.translate('visTypeMilestones.visParams.textSortFieldLabel', {
+          defaultMessage: 'Sort field',
+        })}
+        options={sortFieldOptions}
+        paramName="sortField"
+        value={stateParams.sortField}
+        setValue={setValue}
+      />
+
+      <SelectOption
+        label={i18n.translate('visTypeMilestones.visParams.textSortOrderLabel', {
+          defaultMessage: 'Sort order',
+        })}
+        options={sortOrderOptions}
+        paramName="sortOrder"
+        value={stateParams.sortOrder}
         setValue={setValue}
       />
 
