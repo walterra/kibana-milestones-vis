@@ -25,13 +25,10 @@ import { existsSync } from 'fs';
 const milestonesPluginInitializer = ({ Plugin }) =>
   new Plugin({
     id: 'kibana_milestones_vis',
-    require: ['kibana', 'elasticsearch', 'visualizations', 'interpreter', 'data'],
+    require: ['kibana', 'elasticsearch', 'interpreter', 'data'],
     publicDir: resolve(__dirname, 'public'),
     uiExports: {
-      styleSheetPaths: [
-        resolve(__dirname, 'public/index.scss'),
-        resolve(__dirname, 'public/index.css'),
-      ].find(p => existsSync(p)),
+      styleSheetPaths: resolve(__dirname, 'public/index.scss'),
       hacks: [resolve(__dirname, 'public/legacy')],
       injectDefaultVars: server => ({}),
     },

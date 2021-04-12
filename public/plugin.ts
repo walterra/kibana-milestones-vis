@@ -56,9 +56,7 @@ export class MilestonesPlugin implements Plugin<void, void> {
       uiSettings: core.uiSettings,
       ...(await __LEGACY.setup()),
     };
-    visualizations.types.VisTypesRegistryProvider.register(() =>
-      createMilestonesTypeDefinition(visualizationDependencies)
-    );
+    visualizations.types.registerVisualization(() => createMilestonesTypeDefinition(visualizationDependencies));
   }
 
   public start(core: CoreStart) {
