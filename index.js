@@ -28,7 +28,10 @@ const milestonesPluginInitializer = ({ Plugin }) =>
     require: ['kibana', 'elasticsearch', 'interpreter', 'data'],
     publicDir: resolve(__dirname, 'public'),
     uiExports: {
-      styleSheetPaths: resolve(__dirname, 'public/index.scss'),
+      styleSheetPaths: [
+        resolve(__dirname, 'public/index.scss'),
+        resolve(__dirname, 'public/index.css'),
+      ].find(p => existsSync(p)),
       hacks: [resolve(__dirname, 'public/legacy')],
       injectDefaultVars: server => ({}),
     },
