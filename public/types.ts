@@ -25,4 +25,6 @@ export interface MilestonesVisParams {
   maxDocuments: number;
   orientation: 'horizontal' | 'vertical';
   showLabels: boolean;
+  sortField: string;
+  sortOrder: 'asc' | 'desc';
 }
