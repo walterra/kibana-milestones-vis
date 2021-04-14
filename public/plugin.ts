@@ -17,25 +17,43 @@
  * under the License.
  */
 
+import './index.scss';
+
 import {
   PluginInitializerContext,
   CoreSetup,
   CoreStart,
   Plugin,
 } from 'kibana/public';
-import { VisualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public';
+
+import { Plugin as DataPublicPlugin } from '../../../src/plugins/data/public';
+import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
+import {
+  setData,
+} from './services';
 
 import { createMilestonesTypeDefinition } from './milestones_vis_type';
 
 /** @internal */
 export interface MilestonesVisualizationDependencies {
   core: CoreSetup;
+  plugins: {
+    data: ReturnType<DataPublicPlugin['setup']>;
+  };
 }
 
 /** @internal */
 export interface MilestonesPluginSetupDependencies {
+  data: ReturnType<DataPublicPlugin['setup']>;
   visualizations: VisualizationsSetup;
 }
+
+/** @internal */
+export interface MilestonesPluginStartDependencies {
+  data: ReturnType<DataPublicPlugin['start']>;
+}
+
+
 
 /** @internal */
 export class MilestonesPlugin implements Plugin<void, void> {
@@ -47,16 +65,18 @@ export class MilestonesPlugin implements Plugin<void, void> {
 
   public async setup(
     core: CoreSetup,
-    plugins: MilestonesPluginSetupDependencies
+    { data, visualizations }: MilestonesPluginSetupDependencies
   ) {
     const visualizationDependencies: Readonly<MilestonesVisualizationDependencies> = {
       core,
+      plugins: {
+        data,
+      },
     };
-    const { visualizations } = plugins;
     visualizations.createBaseVisualization(createMilestonesTypeDefinition(visualizationDependencies));
   }
 
-  public start(core: CoreStart) {
-    // nothing to do here yet
+  public start(core: CoreStart, { data }: MilestonesPluginStartDependencies) {
+    setData(data);
   }
 }
