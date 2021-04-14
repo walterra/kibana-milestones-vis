@@ -22,15 +22,10 @@ import { npSetup, npStart } from 'ui/new_platform';
 
 import { setup as visualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public/np_ready/public/legacy';
 import { MilestonesPluginSetupDependencies } from './plugin';
-import { LegacyDependenciesPlugin } from './shim';
 import { plugin } from '.';
 
 const setupPlugins: Readonly<MilestonesPluginSetupDependencies> = {
   visualizations: visualizationsSetup,
-
-  // Temporary solution
-  // It will be removed when all dependent services are migrated to the new platform.
-  __LEGACY: new LegacyDependenciesPlugin(),
 };
 
 const pluginInstance = plugin({} as PluginInitializerContext);

@@ -27,7 +27,7 @@ import { LegacyPluginApi, LegacyPluginInitializer } from '../../src/legacy/types
 const milestonesPluginInitializer: LegacyPluginInitializer = ({ Plugin }: LegacyPluginApi) =>
   new Plugin({
     id: 'kibana_milestones_vis',
-    require: ['kibana', 'elasticsearch', 'data'],
+    require: ['kibana', 'elasticsearch'],
     publicDir: resolve(__dirname, 'public'),
     uiExports: {
       styleSheetPaths: [

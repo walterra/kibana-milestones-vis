@@ -53,14 +53,12 @@ export const createMilestonesVisualization = () =>
     constructor(el: HTMLElement, vis: any) {
       this.vis = vis;
       this.el = el;
-      this.resize();
     }
 
-    async render(rawVisData: RawVisData, visParams: any, status: any) {
+    async render(rawVisData: RawVisData, visParams: any) {
       if (
         this.vis === undefined ||
-        this.el === undefined ||
-        !(status.resize || status.data || status.params)
+        this.el === undefined
       )
         return;
 
@@ -123,11 +121,6 @@ export const createMilestonesVisualization = () =>
       }
 
       milestonesLayoutGenerator.render(useCategories ? categorizedData : data);
-    }
-
-    // milestones handles resizing itself
-    resize() {
-      return;
     }
 
     destroy() {

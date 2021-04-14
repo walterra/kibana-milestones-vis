@@ -23,20 +23,18 @@ import {
   CoreStart,
   Plugin,
 } from 'kibana/public';
-import { LegacyDependenciesPlugin, LegacyDependenciesPluginSetup } from './shim';
 import { VisualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public';
 
 import { createMilestonesTypeDefinition } from './milestones_vis_type';
 
 /** @internal */
-export interface MilestonesVisualizationDependencies extends LegacyDependenciesPluginSetup {
+export interface MilestonesVisualizationDependencies {
   core: CoreSetup;
 }
 
 /** @internal */
 export interface MilestonesPluginSetupDependencies {
   visualizations: VisualizationsSetup;
-  __LEGACY: LegacyDependenciesPlugin;
 }
 
 /** @internal */
@@ -49,13 +47,14 @@ export class MilestonesPlugin implements Plugin<void, void> {
 
   public async setup(
     core: CoreSetup,
-    { visualizations, __LEGACY }: MilestonesPluginSetupDependencies
+    plugins: MilestonesPluginSetupDependencies
   ) {
     const visualizationDependencies: Readonly<MilestonesVisualizationDependencies> = {
       core,
-      ...(await __LEGACY.setup()),
     };
-    visualizations.types.createBaseVisualization(createMilestonesTypeDefinition(visualizationDependencies));
+    console.log('plugins', plugins);
+    const { visualizations } = plugins;
+    visualizations.createBaseVisualization(createMilestonesTypeDefinition(visualizationDependencies));
   }
 
   public start(core: CoreStart) {
