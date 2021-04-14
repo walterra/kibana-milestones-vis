@@ -1,9 +1,4 @@
 module.exports = {
-  settings: {
-    'import/resolver': {
-      '@elastic/eslint-import-resolver-kibana': {
-        rootPackageName: 'kibana_milestones_vis'
-      }
-    }
-  },
-}
+  root: true,
+  extends: ['@elastic/eslint-config-kibana', 'plugin:@elastic/eui/recommended'],
+};

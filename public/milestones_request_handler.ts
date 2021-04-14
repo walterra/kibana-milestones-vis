@@ -17,7 +17,9 @@
  * under the License.
  */
 
-import { esFilters, esQuery, TimeRange, Query } from '../../../src/plugins/data/public';
+// eslint-disable-next-line @kbn/eslint/no-restricted-paths
+import { getSearchService } from '../../../src/plugins/data/public/services';
+import { Filter, esQuery, TimeRange, Query } from '../../../src/plugins/data/public';
 
 import { NONE_SELECTED } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
@@ -25,15 +27,16 @@ import { MilestonesVisualizationDependencies } from './plugin';
 interface MilestonesRequestHandlerParams {
   index: any;
   query: Query;
-  filters: esFilters.Filter;
+  filters: Filter;
   timeRange: TimeRange;
   visParams: any;
 }
 
 export function createMilestonesRequestHandler({
-  es,
   core: { uiSettings },
 }: MilestonesVisualizationDependencies) {
+  const { esClient } = getSearchService().__LEGACY;
+
   return async ({ index, timeRange, filters, query, visParams }: MilestonesRequestHandlerParams) => {
     const indexPatternTitle = index.title;
     const esQueryConfigs = esQuery.getEsQueryConfig(uiSettings);
@@ -84,7 +87,7 @@ export function createMilestonesRequestHandler({
       },
     };
 
-    const resp = await es.search(request);
+    const resp = await esClient.search(request);
 
     return {
       timeFieldName: index.timeFieldName,

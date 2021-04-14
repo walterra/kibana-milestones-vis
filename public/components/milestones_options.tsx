@@ -21,12 +21,16 @@ import React from 'react';
 import { EuiPanel } from '@elastic/eui';
 import { i18n } from '@kbn/i18n';
 
-import { VisOptionsProps } from 'ui/vis/editors/default';
+import { VisOptionsProps } from '../../../../src/legacy/core_plugins/vis_default_editor/public';
 import {
   NumberInputOption,
+} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/number_input';
+import {
   SelectOption,
+} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/select';
+import {
   SwitchOption,
-} from '../../../../src/legacy/core_plugins/kbn_vislib_vis_types/public/components';
+} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/switch';
 import { NONE_SELECTED, SCORE_FIELD } from '../constants';
 import { MilestonesVisParams } from '../types';
 
@@ -35,9 +39,13 @@ interface KibanaIndexPatternField {
   type: string;
 }
 function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<MilestonesVisParams>) {
+  if (typeof vis.data.indexPattern === 'undefined') {
+    return null;
+  }
+
   const fieldOptions = [
     { value: NONE_SELECTED, text: NONE_SELECTED },
-    ...vis.indexPattern.fields
+    ...vis.data.indexPattern.fields
       .filter(
         (field: KibanaIndexPatternField) =>
           field.type === 'string' && !['_id', '_index', '_type'].includes(field.name)
@@ -47,7 +55,7 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
 
   const sortFieldOptions = [
     { value: SCORE_FIELD, text: SCORE_FIELD },
-    ...vis.indexPattern.fields
+    ...vis.data.indexPattern.fields
       .filter(
         (field: KibanaIndexPatternField) =>
           !['_id', '_index', '_score', '_source', '_type'].includes(field.name)

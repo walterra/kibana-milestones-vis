@@ -19,8 +19,6 @@
 
 import { i18n } from '@kbn/i18n';
 
-import { Status } from '../../../src/legacy/core_plugins/visualizations/public';
-
 // @ts-ignore
 import image from './images/icon-milestones.svg';
 
@@ -57,7 +55,6 @@ export const createMilestonesTypeDefinition = (
         sortOrder: 'desc'
       },
     },
-    requiresUpdateStatus: [Status.PARAMS, Status.DATA],
     requestHandler,
     responseHandler: 'none',
     visualization,
