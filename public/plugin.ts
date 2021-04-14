@@ -52,7 +52,6 @@ export class MilestonesPlugin implements Plugin<void, void> {
     const visualizationDependencies: Readonly<MilestonesVisualizationDependencies> = {
       core,
     };
-    console.log('plugins', plugins);
     const { visualizations } = plugins;
     visualizations.createBaseVisualization(createMilestonesTypeDefinition(visualizationDependencies));
   }
