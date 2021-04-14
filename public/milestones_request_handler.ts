@@ -17,12 +17,11 @@
  * under the License.
  */
 
-// eslint-disable-next-line @kbn/eslint/no-restricted-paths
-import { getSearchService } from '../../../src/plugins/data/public/services';
 import { Filter, esQuery, TimeRange, Query } from '../../../src/plugins/data/public';
 
 import { NONE_SELECTED } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
+import { getData } from './services';
 
 interface MilestonesRequestHandlerParams {
   index: any;
@@ -33,11 +32,11 @@ interface MilestonesRequestHandlerParams {
 }
 
 export function createMilestonesRequestHandler({
-  core: { uiSettings },
+  core: { uiSettings }
 }: MilestonesVisualizationDependencies) {
-  const { esClient } = getSearchService().__LEGACY;
 
   return async ({ index, timeRange, filters, query, visParams }: MilestonesRequestHandlerParams) => {
+    const { esClient } = getData().search.__LEGACY;
     const indexPatternTitle = index.title;
     const esQueryConfigs = esQuery.getEsQueryConfig(uiSettings);
     const filtersDsl = esQuery.buildEsQuery(undefined, query, filters, esQueryConfigs);

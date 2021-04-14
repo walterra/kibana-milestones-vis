@@ -1,3 +1,10 @@
 {
-  "styleSheetToCompile": "public/index.scss"
+  "buildSourcePatterns": [
+    "package.json",
+    "yarn.lock",
+    "tsconfig.json",
+    "public/**/*",
+    "kibana.json",
+    "target/**/*"
+  ]
 }

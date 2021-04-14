@@ -21,16 +21,12 @@ import React from 'react';
 import { EuiPanel } from '@elastic/eui';
 import { i18n } from '@kbn/i18n';
 
-import { VisOptionsProps } from '../../../../src/legacy/core_plugins/vis_default_editor/public';
+import { VisOptionsProps } from '../../../../src/plugins/vis_default_editor/public';
 import {
   NumberInputOption,
-} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/number_input';
-import {
   SelectOption,
-} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/select';
-import {
   SwitchOption,
-} from '../../../../src/legacy/core_plugins/vis_type_vislib/public/components/common/switch';
+} from '../../../../src/plugins/charts/public';
 import { NONE_SELECTED, SCORE_FIELD } from '../constants';
 import { MilestonesVisParams } from '../types';
 

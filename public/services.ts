@@ -17,18 +17,7 @@
  * under the License.
  */
 
-import { PluginInitializerContext } from 'kibana/public';
-import { npSetup, npStart } from 'ui/new_platform';
+import { DataPublicPluginStart } from '../../../src/plugins/data/public';
+import { createGetterSetter } from '../../../src/plugins/kibana_utils/public';
 
-import { setup as visualizationsSetup } from '../../../src/legacy/core_plugins/visualizations/public/np_ready/public/legacy';
-import { MilestonesPluginSetupDependencies } from './plugin';
-import { plugin } from '.';
-
-const setupPlugins: Readonly<MilestonesPluginSetupDependencies> = {
-  visualizations: visualizationsSetup,
-};
-
-const pluginInstance = plugin({} as PluginInitializerContext);
-
-export const setup = pluginInstance.setup(npSetup.core, setupPlugins);
-export const start = pluginInstance.start(npStart.core);
+export const [getData, setData] = createGetterSetter<DataPublicPluginStart>('Data');

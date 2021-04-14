@@ -1,0 +1,7 @@
+{
+  "id": "kibanaMilestonesVis",
+  "version": "kibana",
+  "server": false,
+  "ui": true,
+  "requiredPlugins": ["data", "visualizations"]
+}
