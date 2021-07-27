@@ -40,7 +40,7 @@ cd ~/dev/kibana-6.x-git/kibana
 git fetch --all --tags
 
 # Check out the release in Kibana
-git checkout v6.8.16
+git checkout v6.8.17
 
 # Switch to updated node-js if necessary
 nvm use
@@ -68,16 +68,24 @@ yarn kbn bootstrap
 # Create the distribution build file
 yarn build
 
+# Next, download, install and run the corresponding Elasticsearch
+mkdir ~/dev/elasticsearch-6.8.17-release
+cd ~/dev/elasticsearch-6.8.17-release
+curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.8.17.tar.gz
+gunzip -c elasticsearch-6.8.17.tar.gz | tar xopf -
+cd elasticsearch-6.8.17
+./bin/elasticsearch
+
 # Next, download and install the corresponding Kibana release to test the build via
-# https://www.elastic.co/downloads/past-releases/kibana-6-8-8
-mkdir ~/dev/kibana-6.8.16-release
-cd ~/dev/kibana-6.8.16-release/
-curl -O https://artifacts.elastic.co/downloads/kibana/kibana-6.8.16-darwin-x86_64.tar.gz
-gunzip -c kibana-6.8.16-darwin-x86_64.tar.gz | tar xopf -
-cd kibana-6.8.16-darwin-x86_64
+# https://www.elastic.co/downloads/past-releases/kibana-6-8-17
+mkdir ~/dev/kibana-6.8.17-release
+cd ~/dev/kibana-6.8.17-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-6.8.17-darwin-x86_64.tar.gz
+gunzip -c kibana-6.8.17-darwin-x86_64.tar.gz | tar xopf -
+cd kibana-6.8.17-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-6.x-git/kibana-extra/kibana-milestones-vis/build/kibana-milestones-vis-6.8.16.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-6.x-git/kibana-extra/kibana-milestones-vis/build/kibana-milestones-vis-6.8.17.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
@@ -88,15 +96,15 @@ cd ~/dev/kibana-6.x-git/kibana-extra/kibana-milestones-vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
-git commit -m "Bump version to 6.8.16."
-git tag v6.8.16
+git commit -m "Bump version to 6.8.17."
+git tag v6.8.17
 git push origin 6.8
 git push --tags
 
 # On Github, edit the new release at
-# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v6.8.16
-# Use `Kibana v6.8.16 compatibility release.` as the release text.
-# Add the build file `kibana-milestones-vis-6.8.16.zip` to the releases' binaries.
+# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v6.8.17
+# Use `Kibana v6.8.17 compatibility release.` as the release text.
+# Add the build file `kibana-milestones-vis-6.8.17.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-6.x-git/kibana-extra/plugin_tmp
