@@ -1,6 +1,6 @@
 {
   "name": "kibana_milestones_vis",
-  "version": "7.8.0",
+  "version": "7.9.0",
   "description": "A d3 based timeline visualization kibana plugin.",
   "main": "index.js",
   "homepage": "https://github.com/walterra/kibana-milestones-vis",
@@ -16,7 +16,7 @@
     "Walter Rafelsberger <walter.rafelsberger@elastic.co>"
   ],
   "kibana": {
-    "version": "7.8.0",
+    "version": "7.9.0",
     "templateVersion": "1.0.0"
   },
   "scripts": {
