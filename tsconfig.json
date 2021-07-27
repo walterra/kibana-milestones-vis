@@ -1,6 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "include": [
-    "public/**/*",
-  ]
+    "index.ts",
+    "public/**/*.ts",
+    "public/**/*.tsx",
+    "../../typings/**/*",
+  ],
+  "exclude": []
 }
