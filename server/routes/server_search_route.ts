@@ -104,7 +104,7 @@ export function registerServerSearchRoute(router: IRouter, data: DataPluginStart
             timestamp: hit.fields.milestones_timestamp[0],
             text: get(hit._source, labelField),
             ...(categoryField !== undefined && categoryField !== NONE_SELECTED
-              ? { category: hit._source[categoryField] }
+              ? { category: get(hit._source, categoryField) }
               : {}),
           })),
         },
