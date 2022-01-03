@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "d3": "3.5.17",
-    "d3-milestones": "^1.1.0"
+    "d3-milestones": "^1.2.2"
   },
   "resolutions": {
     "lodash": "^4.17.21"
