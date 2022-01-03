@@ -5,7 +5,7 @@
   "server": true,
   "ui": true,
   "requiredPlugins": ["data", "visualizations"],
-  "requiredBundles": ["charts"],
+  "requiredBundles": [],
   "optionalPlugins": []
 }
 

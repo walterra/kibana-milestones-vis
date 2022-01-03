@@ -2,31 +2,17 @@
 
 See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
 
-  - `npm install`
+See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment.
 
-    Fetches and installs the plugins dependencies.
+## Scripts
 
-  - `npm start`
+<dl>
+  <dt><code>yarn kbn bootstrap</code></dt>
+  <dd>Execute this to install node_modules and setup the dependencies in your plugin and in Kibana</dd>
 
-    Start kibana and have it include this plugin
-
-  - `npm start -- --config kibana.yml`
-
-    You can pass any argument that you would normally send to `bin/kibana` by putting them after `--` when running `npm start`
-
-  - `npm run build`
-
-    Build a distributable archive
-
-  - `npm run test:browser`
-
-    Run the browser tests in a real web browser
-
-  - `npm run test:mocha`
-
-    Run the server tests using mocha
-
-For more information about any of these commands run `npm run ${task} -- --help`.
+  <dt><code>yarn plugin-helpers build</code></dt>
+  <dd>Execute this to create a distributable version of this plugin that can be installed in Kibana</dd>
+</dl>
 
 ## Release Process
 
@@ -34,13 +20,13 @@ This is the process for producing a release for a new minor version that doesn't
 
 ```bash
 # Move to the directory of you Kibana git checkout
-cd ~/dev/kibana-7.9-git/kibana
+cd ~/dev/kibana-7.x-git/kibana
 
 # Fetch the latest releases
 git fetch --all --tags
 
 # Check out the release in Kibana
-git checkout v7.9.0
+git checkout v7.10.0
 
 # Switch to updated node-js if necessary
 nvm use
@@ -65,7 +51,7 @@ yarn kbn bootstrap
 # kibana-extra/kibana-milestones-vis/README.md
 # Do not commit the changes yet, we need to test the release first!
 
-# Fix for 7.9: Build bundles
+# Fix for 7.10: Build bundles
 cd ../..
 node scripts/build_kibana_platform_plugins.js --dist
 cd plugins/kibana_milestones_vis
@@ -75,42 +61,42 @@ yarn build
 
 
 # Next, download, install and run the corresponding Elasticsearch
-mkdir ~/dev/elasticsearch-7.9.0-release
-cd ~/dev/elasticsearch-7.9.0-release
-curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.0-darwin-x86_64.tar.gz
-gunzip -c elasticsearch-7.9.0-darwin-x86_64.tar.gz | tar xopf -
-cd elasticsearch-7.9.0
+mkdir ~/dev/elasticsearch-7.10.0-release
+cd ~/dev/elasticsearch-7.10.0-release
+curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.0-darwin-x86_64.tar.gz
+gunzip -c elasticsearch-7.10.0-darwin-x86_64.tar.gz | tar xopf -
+cd elasticsearch-7.10.0
 ./bin/elasticsearch
 
 # Next, in another terminal tab, download and install the corresponding Kibana release to test the build
-mkdir ~/dev/kibana-7.9.0-release
-cd ~/dev/kibana-7.9.0-release/
-curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.9.0-darwin-x86_64.tar.gz
-gunzip -c kibana-7.9.0-darwin-x86_64.tar.gz | tar xopf -
-cd kibana-7.9.0-darwin-x86_64
+mkdir ~/dev/kibana-7.10.0-release
+cd ~/dev/kibana-7.10.0-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.10.0-darwin-x86_64.tar.gz
+gunzip -c kibana-7.10.0-darwin-x86_64.tar.gz | tar xopf -
+cd kibana-7.10.0-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-7.9-git/kibana/plugins/kibana_milestones_vis/build/kibana_milestones_vis-7.9.0.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-7.x-git/kibana/plugins/kibana_milestones_vis/build/kibanaMilestonesVis-7.10.0.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
 ./bin/kibana
 
 # If everything works, finally the time has come to create the release on Github.
-cd ~/dev/kibana-7.9-git/kibana/plugins/kibana_milestones_vis
+cd ~/dev/kibana-7.x-git/kibana/plugins/kibana_milestones_vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
-git commit -m "Bump version to 7.9.0."
-git tag v7.9.0
-git push origin 7.9
+git commit -m "Bump version to 7.10.0."
+git tag v7.10.0
+git push origin 7.10
 git push --tags
 
 # On Github, edit the new release at
-# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.9.0
-# Use `Kibana v7.9.0 compatibility release.` as the release text.
-# Add the build file `kibana_milestones_vis-7.9.0.zip` to the releases' binaries.
+# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.10.0
+# Use `Kibana v7.10.0 compatibility release.` as the release text.
+# Add the build file `kibanaMilestonesVis-7.10.0.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
-rm -r ~/dev/kibana-7.9-git/kibana/plugins/plugin_tmp
+rm -r ~/dev/kibana-7.x-git/kibana/plugins/plugin_tmp
 ```
