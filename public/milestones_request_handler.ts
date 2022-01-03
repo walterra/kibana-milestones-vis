@@ -19,9 +19,9 @@
 
 import { Filter, esQuery, TimeRange, Query } from '../../../src/plugins/data/public';
 
-import { NONE_SELECTED } from './constants';
+import { NONE_SELECTED, SERVER_SEARCH_ROUTE_PATH } from '../common';
+
 import { MilestonesVisualizationDependencies } from './plugin';
-import { getData } from './services';
 
 interface MilestonesRequestHandlerParams {
   index: any;
@@ -32,12 +32,15 @@ interface MilestonesRequestHandlerParams {
 }
 
 export function createMilestonesRequestHandler({
-  core: { uiSettings }
+  core: { http, uiSettings },
 }: MilestonesVisualizationDependencies) {
-
-  return async ({ index, timeRange, filters, query, visParams }: MilestonesRequestHandlerParams) => {
-    const { esClient } = getData().search.__LEGACY;
-    const indexPatternTitle = index.title;
+  return async ({
+    index,
+    timeRange,
+    filters,
+    query,
+    visParams,
+  }: MilestonesRequestHandlerParams) => {
     const esQueryConfigs = esQuery.getEsQueryConfig(uiSettings);
     const filtersDsl = esQuery.buildEsQuery(undefined, query, filters, esQueryConfigs);
 
@@ -48,55 +51,19 @@ export function createMilestonesRequestHandler({
       };
     }
 
-    const request = {
-      index: indexPatternTitle,
-      body: {
-        query: {
-          bool: {
-            must: [
-              filtersDsl,
-              {
-                range: {
-                  [index.timeFieldName]: {
-                    gte: timeRange.from,
-                    lt: timeRange.to,
-                  },
-                },
-              },
-            ],
-          },
-        },
-        _source: [
-          visParams.labelField,
-          ...(visParams.categoryField !== undefined && visParams.categoryField !== NONE_SELECTED
-            ? [visParams.categoryField]
-            : []),
-        ],
-        script_fields: {
-          milestones_timestamp: {
-            script: {
-              source: `doc["${index.timeFieldName}"].value.millis`,
-            },
-          },
-        },
-        size: visParams.maxDocuments,
-        sort : [
-          { [visParams.sortField] : {"order" : visParams.sortOrder} },
-        ],
-      },
-    };
-
-    const resp = await esClient.search(request);
-
-    return {
-      timeFieldName: index.timeFieldName,
-      data: resp.hits.hits.map((hit: any) => ({
-        timestamp: hit.fields.milestones_timestamp[0],
-        text: hit._source[visParams.labelField],
-        ...(visParams.categoryField !== undefined && visParams.category !== NONE_SELECTED
-          ? { category: hit._source[visParams.categoryField] }
-          : {}),
-      })),
-    };
+    return await http.post(SERVER_SEARCH_ROUTE_PATH, {
+      body: JSON.stringify({
+        categoryField: visParams.categoryField,
+        filtersDsl,
+        index: index.title,
+        labelField: visParams.labelField,
+        maxDocuments: visParams.maxDocuments,
+        sortField: visParams.sortField,
+        sortOrder: visParams.sortOrder,
+        timeFieldName: index.timeFieldName,
+        timeRangeFrom: timeRange.from,
+        timeRangeTo: timeRange.to,
+      }),
+    });
   };
 }

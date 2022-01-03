@@ -17,7 +17,10 @@
  * under the License.
  */
 
-import { DataPublicPluginStart } from '../../../src/plugins/data/public';
-import { createGetterSetter } from '../../../src/plugins/kibana_utils/public';
+export const PLUGIN_ID = 'kibanaMilestonesVis';
+export const PLUGIN_NAME = 'Kibana Milestones Visualisation';
 
-export const [getData, setData] = createGetterSetter<DataPublicPluginStart>('Data');
+export const NONE_SELECTED = '--- None selected ---';
+export const SCORE_FIELD = '_score';
+
+export const SERVER_SEARCH_ROUTE_PATH = '/api/milestones/search';

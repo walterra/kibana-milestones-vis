@@ -19,6 +19,8 @@
 
 import { i18n } from '@kbn/i18n';
 
+import { NONE_SELECTED, SCORE_FIELD } from '../common';
+
 // @ts-ignore
 import image from './images/icon-milestones.svg';
 
@@ -26,7 +28,6 @@ import { createMilestonesVisualization } from './milestones_visualization';
 import { createMilestonesRequestHandler } from './milestones_request_handler';
 
 import { MilestonesOptions } from './components/milestones_options';
-import { NONE_SELECTED, SCORE_FIELD } from './constants';
 import { MilestonesVisualizationDependencies } from './plugin';
 
 export const createMilestonesTypeDefinition = (

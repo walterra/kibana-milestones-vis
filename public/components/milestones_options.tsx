@@ -27,7 +27,7 @@ import {
   SelectOption,
   SwitchOption,
 } from '../../../../src/plugins/charts/public';
-import { NONE_SELECTED, SCORE_FIELD } from '../constants';
+import { NONE_SELECTED, SCORE_FIELD } from '../../common';
 import { MilestonesVisParams } from '../types';
 
 interface KibanaIndexPatternField {
