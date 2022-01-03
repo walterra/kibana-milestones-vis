@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import { get } from 'lodash';
 import { PluginStart as DataPluginStart, IEsSearchRequest } from 'src/plugins/data/server';
 import { schema } from '@kbn/config-schema';
 import { IEsSearchResponse } from 'src/plugins/data/common';
@@ -101,7 +102,7 @@ export function registerServerSearchRoute(router: IRouter, data: DataPluginStart
           timeFieldName: timeFieldName,
           data: (res as IEsSearchResponse).rawResponse.hits.hits.map((hit: any) => ({
             timestamp: hit.fields.milestones_timestamp[0],
-            text: hit._source[labelField],
+            text: get(hit._source, labelField),
             ...(categoryField !== undefined && categoryField !== NONE_SELECTED
               ? { category: hit._source[categoryField] }
               : {}),

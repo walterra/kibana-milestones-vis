@@ -21,6 +21,8 @@ import d3 from 'd3';
 // @ts-ignore
 import milestones from 'd3-milestones';
 
+import { MilestonesVisParams } from './types';
+
 interface RawVisData {
   data: any[];
 }
@@ -55,25 +57,15 @@ export const createMilestonesVisualization = () =>
       this.el = el;
     }
 
-    async render(rawVisData: RawVisData, visParams: any) {
-      if (
-        this.vis === undefined ||
-        this.el === undefined
-      )
-        return;
+    async render(rawVisData: RawVisData, visParams: MilestonesVisParams) {
+      if (this.vis === undefined || this.el === undefined) return;
 
-      d3.select(this.el)
-        .selectAll('.milestones-vis')
-        .remove();
-      const element = d3
-        .select(this.el)
-        .append('div')
-        .classed('milestones-vis', true)
-        .node();
+      d3.select(this.el).selectAll('.milestones-vis').remove();
+      const element = d3.select(this.el).append('div').classed('milestones-vis', true).node();
 
       const data = (rawVisData.data || [])
         // data prep
-        .map(d => {
+        .map((d) => {
           if (d.text === undefined) {
             d.text = '<no title>';
           }
