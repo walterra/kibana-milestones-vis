@@ -17,22 +17,26 @@
  * under the License.
  */
 
-import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-
+import React, { FC } from 'react';
 import d3 from 'd3';
 import { Milestones } from 'react-milestones-vis';
 
 import { MilestonesVisParams } from './types';
 
-interface RawVisData {
-  data: any[];
+import './milestones_visualization.scss';
+
+interface RawDataItem {
+  category?: string;
+  timestamp: number;
+  text: string;
 }
 
-interface DataItem {
-  category: string;
+interface DataItem extends RawDataItem {
   date: string;
-  text: string;
+}
+
+interface RawVisData {
+  data: RawDataItem[];
 }
 
 function timeFormat(timestamp: number) {
@@ -42,83 +46,79 @@ function timeFormat(timestamp: number) {
   return localISOTime;
 }
 
-export const createMilestonesVisualization = () =>
-  class MilestonesVisualization {
-    vis: Record<string, any> | undefined = undefined;
-    el: HTMLElement | undefined = undefined;
-    _options = {
-      mapping_timestamp: 'date',
-      mapping_text: 'text',
-      optimize: true,
-      // e.g. "2015-01-26T06:40:36.181"
-      parseTime: '%Y-%m-%dT%H:%M:%S.%L',
-    };
+function isUsingCategories(data: unknown): data is Array<Required<DataItem>> {
+  return Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined';
+}
 
-    constructor(el: HTMLElement, vis: any) {
-      this.vis = vis;
-      this.el = el;
-    }
+const options = {
+  mapping_timestamp: 'date',
+  mapping_text: 'text',
+  optimize: true,
+  // e.g. "2015-01-26T06:40:36.181"
+  parseTime: '%Y-%m-%dT%H:%M:%S.%L',
+};
 
-    async render(rawVisData: RawVisData, visParams: MilestonesVisParams) {
-      if (this.vis === undefined || this.el === undefined) return;
+interface MilestonesVisualizationProps {
+  visData: RawVisData;
+  visParams: MilestonesVisParams;
+}
 
-      const data = (rawVisData.data || [])
-        // data prep
-        .map((d) => {
-          if (d.text === undefined) {
-            d.text = '<no title>';
-          }
-          d.date = timeFormat(d.timestamp);
-          return d;
-        })
-        // remove duplicates
-        .reduce((p, c) => {
-          const exists = p.some((d: DataItem) => d.date === c.date && d.text === c.text);
+export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
+  visData,
+  visParams,
+}) => {
+  const data = (visData.data || [])
+    // data prep
+    .map((d) => {
+      if (d.text === undefined) {
+        d.text = '<no title>';
+      }
+      const item: DataItem = {
+        ...d,
+        date: timeFormat(d.timestamp),
+      };
 
-          if (!exists) {
-            p.push(c);
-          }
+      return item;
+    })
+    // remove duplicates
+    .reduce<DataItem[]>((p, c) => {
+      const exists = p.some((d: DataItem) => d.date === c.date && d.text === c.text);
 
-          return p;
-        }, []);
-
-      const useCategories =
-        Array.isArray(data) && data.length > 0 && typeof data[0].category !== 'undefined';
-
-      let categorizedData;
-
-      if (useCategories) {
-        categorizedData = d3
-          .nest()
-          .key((d: any) => d.category)
-          .entries(data);
+      if (!exists) {
+        p.push(c);
       }
 
-      render(
-        <div className="milestones-vis">
-          <Milestones
-            data={useCategories ? categorizedData : data}
-            mapping={{
-              category: useCategories ? 'key' : undefined,
-              entries: useCategories ? 'values' : undefined,
-              timestamp: this._options.mapping_timestamp,
-              text: this._options.mapping_text,
-            }}
-            parseTime={this._options.parseTime}
-            useLabels={this.vis.params.showLabels}
-            distribution={this.vis.params.distribution}
-            optimize={this._options.optimize}
-            orientation={this.vis.params.orientation}
-            aggregateBy={visParams.interval}
-          />
-        </div>,
-        this.el
-      );
-    }
+      return p;
+    }, []);
 
-    destroy() {
-      if (this.el !== undefined) {
-        unmountComponentAtNode(this.el);
-      }
-    }
-  };
+  let categorizedData;
+
+  if (isUsingCategories(data)) {
+    categorizedData = d3
+      .nest<Required<DataItem>>()
+      .key((d) => d.category)
+      .entries(data);
+  }
+
+  const useCategories = isUsingCategories(data);
+
+  return (
+    <div className="milestones-vis">
+      <Milestones
+        data={useCategories ? categorizedData : data}
+        mapping={{
+          category: useCategories ? 'key' : undefined,
+          entries: useCategories ? 'values' : undefined,
+          timestamp: options.mapping_timestamp,
+          text: options.mapping_text,
+        }}
+        parseTime={options.parseTime}
+        useLabels={visParams.showLabels}
+        distribution={visParams.distribution}
+        optimize={options.optimize}
+        orientation={visParams.orientation}
+        aggregateBy={visParams.interval}
+      />
+    </div>
+  );
+};

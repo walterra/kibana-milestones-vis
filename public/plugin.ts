@@ -17,8 +17,6 @@
  * under the License.
  */
 
-import './index.scss';
-
 import { PluginInitializerContext, CoreSetup, CoreStart, Plugin } from 'kibana/public';
 
 import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
@@ -52,7 +50,7 @@ export class MilestonesPlugin implements Plugin<void, void> {
       core,
       plugins: {},
     };
-    visualizations.createBaseVisualization(
+    visualizations.createReactVisualization(
       createMilestonesTypeDefinition(visualizationDependencies)
     );
   }
