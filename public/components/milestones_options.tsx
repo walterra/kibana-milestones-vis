@@ -62,13 +62,17 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
   const sortOrderOptions = [
     {
       value: 'asc' as MilestonesVisParams['sortOrder'],
-      text: i18n.translate('visTypeMilestones.visParams.textSortOrderAscending', { defaultMessage: 'Ascending', })
+      text: i18n.translate('visTypeMilestones.visParams.textSortOrderAscending', {
+        defaultMessage: 'Ascending',
+      }),
     },
     {
       value: 'desc' as MilestonesVisParams['sortOrder'],
-      text: i18n.translate('visTypeMilestones.visParams.textSortOrderDescending', { defaultMessage: 'Descending', })
+      text: i18n.translate('visTypeMilestones.visParams.textSortOrderDescending', {
+        defaultMessage: 'Descending',
+      }),
     },
-  ]
+  ];
 
   return (
     <EuiPanel paddingSize="s">

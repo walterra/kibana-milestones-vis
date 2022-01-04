@@ -53,7 +53,7 @@ export const createMilestonesTypeDefinition = (
         orientation: 'horizontal',
         showLabels: true,
         sortField: SCORE_FIELD,
-        sortOrder: 'desc'
+        sortOrder: 'desc',
       },
     },
     requestHandler,

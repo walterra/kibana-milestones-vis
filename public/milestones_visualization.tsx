@@ -17,9 +17,11 @@
  * under the License.
  */
 
+import React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
+
 import d3 from 'd3';
-// @ts-ignore
-import milestones from 'd3-milestones';
+import { Milestones } from 'react-milestones-vis';
 
 import { MilestonesVisParams } from './types';
 
@@ -60,9 +62,6 @@ export const createMilestonesVisualization = () =>
     async render(rawVisData: RawVisData, visParams: MilestonesVisParams) {
       if (this.vis === undefined || this.el === undefined) return;
 
-      d3.select(this.el).selectAll('.milestones-vis').remove();
-      const element = d3.select(this.el).append('div').classed('milestones-vis', true).node();
-
       const data = (rawVisData.data || [])
         // data prep
         .map((d) => {
@@ -95,29 +94,31 @@ export const createMilestonesVisualization = () =>
           .entries(data);
       }
 
-      const milestonesLayoutGenerator = milestones(element)
-        .mapping({
-          category: useCategories ? 'key' : undefined,
-          entries: useCategories ? 'values' : undefined,
-          timestamp: this._options.mapping_timestamp,
-          text: this._options.mapping_text,
-        })
-        .parseTime(this._options.parseTime)
-        .useLabels(this.vis.params.showLabels)
-        .distribution(this.vis.params.distribution)
-        .optimize(this._options.optimize)
-        .orientation(this.vis.params.orientation);
-
-      if (typeof visParams.interval !== 'undefined') {
-        milestonesLayoutGenerator.aggregateBy(visParams.interval);
-      }
-
-      milestonesLayoutGenerator.render(useCategories ? categorizedData : data);
+      render(
+        <div className="milestones-vis">
+          <Milestones
+            data={useCategories ? categorizedData : data}
+            mapping={{
+              category: useCategories ? 'key' : undefined,
+              entries: useCategories ? 'values' : undefined,
+              timestamp: this._options.mapping_timestamp,
+              text: this._options.mapping_text,
+            }}
+            parseTime={this._options.parseTime}
+            useLabels={this.vis.params.showLabels}
+            distribution={this.vis.params.distribution}
+            optimize={this._options.optimize}
+            orientation={this.vis.params.orientation}
+            aggregateBy={visParams.interval}
+          />
+        </div>,
+        this.el
+      );
     }
 
     destroy() {
       if (this.el !== undefined) {
-        this.el.innerHTML = '';
+        unmountComponentAtNode(this.el);
       }
     }
   };
