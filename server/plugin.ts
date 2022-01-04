@@ -47,15 +47,12 @@ export class KibanaMilestonesVisPlugin
     this.logger = initializerContext.logger.get();
   }
 
-  public setup(
-    core: CoreSetup<KibanaMilestonesVisPluginStartDeps>,
-    deps: KibanaMilestonesVisPluginSetupDeps
-  ) {
+  public setup(core: CoreSetup<KibanaMilestonesVisPluginStartDeps>) {
     this.logger.debug('kibana_milestones_vis: Setup');
     const router = core.http.createRouter();
 
-    core.getStartServices().then(([_, depsStart]) => {
-      registerRoutes(router, depsStart.data);
+    core.getStartServices().then(() => {
+      registerRoutes(router);
     });
 
     return {};

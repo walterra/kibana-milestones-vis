@@ -18,13 +18,13 @@
  */
 
 import { get } from 'lodash';
-import { PluginStart as DataPluginStart, IEsSearchRequest } from 'src/plugins/data/server';
+import { IEsSearchRequest } from 'src/plugins/data/server';
 import { schema } from '@kbn/config-schema';
 import { IEsSearchResponse } from 'src/plugins/data/common';
 import { IRouter } from '../../../../src/core/server';
 import { NONE_SELECTED, SERVER_SEARCH_ROUTE_PATH } from '../../common';
 
-export function registerServerSearchRoute(router: IRouter, data: DataPluginStart) {
+export function registerServerSearchRoute(router: IRouter) {
   router.post(
     {
       path: SERVER_SEARCH_ROUTE_PATH,
@@ -95,7 +95,7 @@ export function registerServerSearchRoute(router: IRouter, data: DataPluginStart
         keepAlive: '5m',
       };
 
-      const res = await data.search.search(context, { params } as IEsSearchRequest, {});
+      const res = await context.search!.search({ params } as IEsSearchRequest, {}).toPromise();
 
       return response.ok({
         body: {

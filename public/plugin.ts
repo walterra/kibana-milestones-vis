@@ -21,7 +21,6 @@ import './index.scss';
 
 import { PluginInitializerContext, CoreSetup, CoreStart, Plugin } from 'kibana/public';
 
-import { Plugin as DataPublicPlugin } from '../../../src/plugins/data/public';
 import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
 
 import { createMilestonesTypeDefinition } from './milestones_vis_type';
@@ -29,21 +28,16 @@ import { createMilestonesTypeDefinition } from './milestones_vis_type';
 /** @internal */
 export interface MilestonesVisualizationDependencies {
   core: CoreSetup;
-  plugins: {
-    data: ReturnType<DataPublicPlugin['setup']>;
-  };
+  plugins: {};
 }
 
 /** @internal */
 export interface MilestonesPluginSetupDependencies {
-  data: ReturnType<DataPublicPlugin['setup']>;
   visualizations: VisualizationsSetup;
 }
 
 /** @internal */
-export interface MilestonesPluginStartDependencies {
-  data: ReturnType<DataPublicPlugin['start']>;
-}
+export interface MilestonesPluginStartDependencies {}
 
 /** @internal */
 export class MilestonesPlugin implements Plugin<void, void> {
