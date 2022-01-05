@@ -121,10 +121,10 @@ react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-milestones-vis@^0.3.2-node14:
-  version "0.3.2-node14"
-  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.3.2-node14.tgz#25e0f7132e26403633979baaaa157410ae67f116"
-  integrity sha512-i9CupWqdZQFrVHup1AWdlVqIDv+NqA6tv7hXEt5V8iqblmlrBNBtdBCdTm5TeQbrASp1PT/+HozeSSxrRWo7Zg==
+react-milestones-vis@^0.3.3-node14:
+  version "0.3.3-node14"
+  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.3.3-node14.tgz#2b2e51ab17e9d55a41fca1b5aac186b97deaeb75"
+  integrity sha512-GgquMFNlnUqOWbsJvpIIlpuq2GOscqyoT10XVUVgtHtzdFdNRbFF7jkIxINjNyBNr0Dj909G1cdNi42bT2DTCw==
   dependencies:
     d3-milestones "^1.2.2"
 
