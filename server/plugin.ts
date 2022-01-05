@@ -48,7 +48,7 @@ export class KibanaMilestonesVisPlugin
   }
 
   public setup(core: CoreSetup<KibanaMilestonesVisPluginStartDeps>) {
-    this.logger.debug('kibana_milestones_vis: Setup');
+    this.logger.debug('kibanaMilestonesVis: Setup');
     const router = core.http.createRouter();
 
     core.getStartServices().then(() => {
@@ -59,7 +59,7 @@ export class KibanaMilestonesVisPlugin
   }
 
   public start(core: CoreStart) {
-    this.logger.debug('kibana_milestones_vis: Started');
+    this.logger.debug('kibanaMilestonesVis: Started');
     return {};
   }
 

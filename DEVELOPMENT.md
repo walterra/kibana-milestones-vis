@@ -51,14 +51,8 @@ yarn kbn bootstrap
 # kibana-extra/kibana-milestones-vis/README.md
 # Do not commit the changes yet, we need to test the release first!
 
-# Fix for 7.10: Build bundles
-cd ../..
-node scripts/build_kibana_platform_plugins.js --dist
-cd plugins/kibana_milestones_vis
-
 # Create the distribution build file
 yarn build
-
 
 # Next, download, install and run the corresponding Elasticsearch
 mkdir ~/dev/elasticsearch-7.11.0-release

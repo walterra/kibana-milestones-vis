@@ -10,7 +10,7 @@ This plugin is a wrapper for the stand-alone library `d3-milestones` (https://gi
 
 To get a version of this plugin which is compatible with your version of Kibana, have a look at the releases page on GitHub: https://github.com/walterra/kibana-milestones-vis/releases
 
-The releases of this plugin are synced with Kibana's release cycle. In the "Assets" section of each release you'll find a zipped build of the plugin which you can use. These zip files are named in the following way: `kibana_milestones_vis-<plugin-version>.zip`. The `plugin-version` should match the version of Kibana you're using.
+The releases of this plugin are synced with Kibana's release cycle. In the "Assets" section of each release you'll find a zipped build of the plugin which you can use. These zip files are named in the following way: `kibanaMilestonesVis-<plugin-version>.zip`. The `plugin-version` should match the version of Kibana you're using.
 
 ### General Installation Pattern
 
