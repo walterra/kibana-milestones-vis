@@ -19,23 +19,24 @@
 
 import { i18n } from '@kbn/i18n';
 
-import { NONE_SELECTED, SCORE_FIELD } from '../common';
+import { ReactVisTypeOptions, VisGroups } from '../../../src/plugins/visualizations/public';
 
-// @ts-ignore
-import image from './images/icon-milestones.svg';
+import { NONE_SELECTED, SCORE_FIELD } from '../common';
 
 import { MilestonesVisualization } from './milestones_visualization';
 import { createMilestonesRequestHandler } from './milestones_request_handler';
 
 import { MilestonesOptions } from './components/milestones_options';
 import { MilestonesVisualizationDependencies } from './plugin';
+import { MilestonesVisParams } from './types';
 
 export const createMilestonesTypeDefinition = (
   dependencies: MilestonesVisualizationDependencies
-) => ({
+): ReactVisTypeOptions<MilestonesVisParams> => ({
   name: 'kibana_milestones_vis',
   title: i18n.translate('milestones.vis.milestonesTitle', { defaultMessage: 'Milestones' }),
-  image,
+  icon: 'visTagCloud',
+  group: VisGroups.PROMOTED,
   description: i18n.translate('milestones.vis.milestonesDescription', {
     defaultMessage: 'A timeline of events with labels.',
   }),
@@ -56,6 +57,7 @@ export const createMilestonesTypeDefinition = (
   requestHandler: createMilestonesRequestHandler(dependencies),
   responseHandler: 'none',
   editorConfig: {
+    enableAutoApply: true,
     optionTabs: [
       {
         name: 'options',
