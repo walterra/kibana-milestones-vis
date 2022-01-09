@@ -21,12 +21,12 @@ import React from 'react';
 import { EuiPanel } from '@elastic/eui';
 import { i18n } from '@kbn/i18n';
 
-import { VisOptionsProps } from '../../../../src/plugins/vis_default_editor/public';
+import { VisEditorOptionsProps } from '../../../../src/plugins/visualizations/public';
 import {
   NumberInputOption,
   SelectOption,
   SwitchOption,
-} from '../../../../src/plugins/charts/public';
+} from '../../../../src/plugins/vis_default_editor/public';
 import { NONE_SELECTED, SCORE_FIELD } from '../../common';
 import { MilestonesVisParams } from '../types';
 
@@ -34,7 +34,11 @@ interface KibanaIndexPatternField {
   name: string;
   type: string;
 }
-function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<MilestonesVisParams>) {
+function MilestonesOptions({
+  stateParams,
+  setValue,
+  vis,
+}: VisEditorOptionsProps<MilestonesVisParams>) {
   if (typeof vis.data.indexPattern === 'undefined') {
     return null;
   }
@@ -120,10 +124,7 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
         label={i18n.translate('visTypeMilestones.visParams.textIntervalLabel', {
           defaultMessage: 'Time interval',
         })}
-        options={vis.type.editorConfig.collections.intervals.map((i: string) => ({
-          value: i,
-          text: i,
-        }))}
+        options={vis.type.editorConfig.collections.intervals}
         paramName="interval"
         value={stateParams.interval}
         setValue={setValue}
@@ -144,10 +145,7 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
         label={i18n.translate('visTypeMilestones.visParams.textLabelArrangementLabel', {
           defaultMessage: 'Label arrangement',
         })}
-        options={vis.type.editorConfig.collections.distributions.map((i: string) => ({
-          value: i,
-          text: i,
-        }))}
+        options={vis.type.editorConfig.collections.distributions}
         paramName="distribution"
         value={stateParams.distribution}
         setValue={setValue}
@@ -157,10 +155,7 @@ function MilestonesOptions({ stateParams, setValue, vis }: VisOptionsProps<Miles
         label={i18n.translate('visTypeMilestones.visParams.textOrientationLabel', {
           defaultMessage: 'Orientation',
         })}
-        options={vis.type.editorConfig.collections.orientation.map((i: string) => ({
-          value: i,
-          text: i,
-        }))}
+        options={vis.type.editorConfig.collections.orientation}
         paramName="orientation"
         value={stateParams.orientation}
         setValue={setValue}

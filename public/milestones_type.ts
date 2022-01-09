@@ -19,29 +19,28 @@
 
 import { i18n } from '@kbn/i18n';
 
-import { ReactVisTypeOptions, VisGroups } from '../../../src/plugins/visualizations/public';
+import { DefaultEditorSize } from '../../../src/plugins/vis_default_editor/public';
+import {
+  VIS_EVENT_TO_TRIGGER,
+  VisGroups,
+  VisTypeDefinition,
+} from '../../../src/plugins/visualizations/public';
 
 import { NONE_SELECTED, SCORE_FIELD } from '../common';
 
-import { MilestonesVisualization } from './milestones_visualization';
-import { createMilestonesRequestHandler } from './milestones_request_handler';
-
+import { toExpressionAst } from './to_ast';
 import { MilestonesOptions } from './components/milestones_options';
-import { MilestonesVisualizationDependencies } from './plugin';
 import { MilestonesVisParams } from './types';
 
-export const createMilestonesTypeDefinition = (
-  dependencies: MilestonesVisualizationDependencies
-): ReactVisTypeOptions<MilestonesVisParams> => ({
+export const createMilestonesTypeDefinition = (): VisTypeDefinition<MilestonesVisParams> => ({
   name: 'kibana_milestones_vis',
-  title: i18n.translate('milestones.vis.milestonesTitle', { defaultMessage: 'Milestones' }),
+  title: 'Milestones',
   icon: 'visTagCloud',
   group: VisGroups.PROMOTED,
   description: i18n.translate('milestones.vis.milestonesDescription', {
     defaultMessage: 'A timeline of events with labels.',
   }),
   visConfig: {
-    component: MilestonesVisualization,
     defaults: {
       categoryField: NONE_SELECTED,
       labelField: NONE_SELECTED,
@@ -54,24 +53,44 @@ export const createMilestonesTypeDefinition = (
       sortOrder: 'desc',
     },
   },
-  requestHandler: createMilestonesRequestHandler(dependencies),
-  responseHandler: 'none',
   editorConfig: {
+    optionsTemplate: MilestonesOptions,
     enableAutoApply: true,
-    optionTabs: [
-      {
-        name: 'options',
-        title: i18n.translate('milestones.vis.milestonesOptionsTitle', {
-          defaultMessage: 'Options',
-        }),
-        editor: MilestonesOptions,
-      },
-    ],
+    defaultSize: DefaultEditorSize.MEDIUM,
     collections: {
-      distributions: ['top-bottom', 'top', 'bottom'],
-      intervals: ['second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'],
-      orientation: ['horizontal', 'vertical'],
-      sortOrder: ['asc', 'desc'],
+      distributions: [
+        { text: 'top-bottom', value: 'top-bottom' },
+        { text: 'top', value: 'top' },
+        { text: 'bottom', value: 'bottom' },
+      ],
+      intervals: [
+        { text: 'second', value: 'second' },
+        { text: 'minute', value: 'minute' },
+        { text: 'hour', value: 'hour' },
+        { text: 'day', value: 'day' },
+        { text: 'week', value: 'week' },
+        { text: 'month', value: 'month' },
+        { text: 'quarter', value: 'quarter' },
+        { text: 'year', value: 'year' },
+      ],
+      orientation: [
+        { text: 'horizontal', value: 'horizontal' },
+        { text: 'vertical', value: 'vertical' },
+      ],
+      sortOrder: [
+        { text: 'asc', value: 'asc' },
+        { text: 'desc', value: 'desc' },
+      ],
     },
   },
+  toExpressionAst,
+  options: {
+    showIndexSelection: true,
+    showQueryBar: true,
+    showFilterBar: true,
+  },
+  getSupportedTriggers: () => {
+    return [VIS_EVENT_TO_TRIGGER.applyFilter];
+  },
+  requiresSearch: true,
 });

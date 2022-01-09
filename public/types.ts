@@ -18,6 +18,7 @@
  */
 
 export interface MilestonesVisParams {
+  indexPatternId: string;
   distribution: 'top-bottom' | 'top' | 'bottom';
   categoryField: string;
   interval: 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';

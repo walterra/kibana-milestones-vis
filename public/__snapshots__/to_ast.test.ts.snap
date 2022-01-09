@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`milestones vis toExpressionAst function should match snapshot params fulfilled 1`] = `
+Object {
+  "chain": Array [
+    Object {
+      "arguments": Object {
+        "categoryField": Array [
+          "the-category-field",
+        ],
+        "distribution": Array [
+          "top",
+        ],
+        "indexPatternId": Array [
+          "123",
+        ],
+        "interval": Array [
+          "year",
+        ],
+        "labelField": Array [
+          "the-label-field",
+        ],
+        "maxDocuments": Array [
+          100,
+        ],
+        "orientation": Array [
+          "vertical",
+        ],
+        "showLabels": Array [
+          false,
+        ],
+        "sortField": Array [
+          "the-sort-field",
+        ],
+        "sortOrder": Array [
+          "desc",
+        ],
+      },
+      "function": "milestones",
+      "type": "function",
+    },
+  ],
+  "type": "expression",
+}
+`;
+
+exports[`milestones vis toExpressionAst function should match snapshot without params 1`] = `
+Object {
+  "chain": Array [
+    Object {
+      "arguments": Object {
+        "indexPatternId": Array [
+          "123",
+        ],
+      },
+      "function": "milestones",
+      "type": "function",
+    },
+  ],
+  "type": "expression",
+}
+`;

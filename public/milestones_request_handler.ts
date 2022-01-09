@@ -22,25 +22,23 @@ import { Filter, esQuery, TimeRange, Query } from '../../../src/plugins/data/pub
 import { NONE_SELECTED, SERVER_SEARCH_ROUTE_PATH } from '../common';
 
 import { MilestonesVisualizationDependencies } from './plugin';
+import { getData } from './services';
+import { MilestonesVisParams } from './types';
 
 interface MilestonesRequestHandlerParams {
-  index: any;
   query: Query;
   filters: Filter;
   timeRange: TimeRange;
-  visParams: any;
+  visParams: MilestonesVisParams;
 }
 
 export function createMilestonesRequestHandler({
   core: { http, uiSettings },
 }: MilestonesVisualizationDependencies) {
-  return async ({
-    index,
-    timeRange,
-    filters,
-    query,
-    visParams,
-  }: MilestonesRequestHandlerParams) => {
+  const { indexPatterns } = getData();
+
+  return async ({ timeRange, filters, query, visParams }: MilestonesRequestHandlerParams) => {
+    const index = await indexPatterns.get(visParams.indexPatternId);
     const esQueryConfigs = esQuery.getEsQueryConfig(uiSettings);
     const filtersDsl = esQuery.buildEsQuery(undefined, query, filters, esQueryConfigs);
 

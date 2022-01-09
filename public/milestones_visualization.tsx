@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FC } from 'react';
+import React, { useEffect, FC } from 'react';
 import d3 from 'd3';
 import { Milestones } from 'react-milestones-vis';
 
@@ -35,7 +35,7 @@ interface DataItem extends RawDataItem {
   date: string;
 }
 
-interface RawVisData {
+export interface RawVisData {
   data: RawDataItem[];
 }
 
@@ -59,14 +59,20 @@ const options = {
 };
 
 interface MilestonesVisualizationProps {
+  renderComplete: () => void;
   visData: RawVisData;
-  visParams: MilestonesVisParams;
+  visConfig: MilestonesVisParams;
 }
 
 export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
+  renderComplete,
   visData,
-  visParams,
+  visConfig,
 }) => {
+  useEffect(() => {
+    renderComplete();
+  }, []);
+
   const data = (visData.data || [])
     // data prep
     .map((d) => {
@@ -91,33 +97,29 @@ export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
       return p;
     }, []);
 
-  let categorizedData;
-
-  if (isUsingCategories(data)) {
-    categorizedData = d3
-      .nest<Required<DataItem>>()
-      .key((d) => d.category)
-      .entries(data);
-  }
-
-  const useCategories = isUsingCategories(data);
-
   return (
     <div className="milestones-vis">
       <Milestones
-        data={useCategories ? categorizedData : data}
+        data={
+          isUsingCategories(data)
+            ? d3
+                .nest<Required<DataItem>>()
+                .key((d) => d.category)
+                .entries(data)
+            : data
+        }
         mapping={{
-          category: useCategories ? 'key' : undefined,
-          entries: useCategories ? 'values' : undefined,
+          category: isUsingCategories(data) ? 'key' : undefined,
+          entries: isUsingCategories(data) ? 'values' : undefined,
           timestamp: options.mapping_timestamp,
           text: options.mapping_text,
         }}
         parseTime={options.parseTime}
-        useLabels={visParams.showLabels}
-        distribution={visParams.distribution}
+        useLabels={visConfig.showLabels}
+        distribution={visConfig.distribution}
         optimize={options.optimize}
-        orientation={visParams.orientation}
-        aggregateBy={visParams.interval}
+        orientation={visConfig.orientation}
+        aggregateBy={visConfig.interval}
       />
     </div>
   );
