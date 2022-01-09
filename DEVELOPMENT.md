@@ -83,7 +83,7 @@ git add README.md
 git add package.json
 git commit -m "Bump version to 7.12.0."
 git tag v7.12.0
-git push origin 7.11
+git push origin 7.12
 git push --tags
 
 # On Github, edit the new release at
