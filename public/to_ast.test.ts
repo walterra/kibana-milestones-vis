@@ -39,11 +39,11 @@ describe('milestones vis toExpressionAst function', () => {
       indexPatternId: 'the-index-pattern-id',
       distribution: 'top',
       categoryField: 'the-category-field',
-      interval: 'year',
+      aggregateBy: 'year',
       labelField: 'the-label-field',
       maxDocuments: 100,
       orientation: 'vertical',
-      showLabels: false,
+      useLabels: false,
       sortField: 'the-sort-field',
       sortOrder: 'desc',
     };

@@ -115,11 +115,11 @@ export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
           text: options.mapping_text,
         }}
         parseTime={options.parseTime}
-        useLabels={visConfig.showLabels}
+        useLabels={visConfig.useLabels}
         distribution={visConfig.distribution}
         optimize={options.optimize}
         orientation={visConfig.orientation}
-        aggregateBy={visConfig.interval}
+        aggregateBy={visConfig.aggregateBy}
       />
     </div>
   );

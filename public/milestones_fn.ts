@@ -41,24 +41,6 @@ export type MilestonesExpressionFunctionDefinition = ExpressionFunctionDefinitio
   ExecutionContext<Adapters, ExecutionContextSearch>
 >;
 
-// distribution: 'top-bottom' | 'top' | 'bottom';
-// categoryField: string;
-// interval: 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';
-// labelField: string;
-// maxDocuments: number;
-// orientation: 'horizontal' | 'vertical';
-// showLabels: boolean;
-// sortField: string;
-// sortOrder: 'asc' | 'desc';
-
-// aggregateBy: 'minute',
-// optimize: false,
-// autoResize: true,
-// orientation: 'horizontal',
-// distribution: 'top-bottom',
-// useLabels: true,
-// data: [],
-
 export const createMilestonesFn = (
   dependencies: MilestonesVisualizationDependencies
 ): MilestonesExpressionFunctionDefinition => ({
@@ -84,7 +66,7 @@ export const createMilestonesFn = (
       default: undefined,
       help: '',
     },
-    interval: {
+    aggregateBy: {
       types: ['string'],
       default: 'minute',
       help: '',
@@ -104,7 +86,7 @@ export const createMilestonesFn = (
       default: 'horizontal',
       help: '',
     },
-    showLabels: {
+    useLabels: {
       types: ['boolean'],
       default: true,
       help: '',

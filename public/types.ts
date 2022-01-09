@@ -17,15 +17,18 @@
  * under the License.
  */
 
-export interface MilestonesVisParams {
+import { Milestones } from 'react-milestones-vis';
+
+type MilestonesProps = Pick<
+  React.ComponentProps<typeof Milestones>,
+  'distribution' | 'aggregateBy' | 'orientation' | 'useLabels'
+>;
+
+export interface MilestonesVisParams extends Required<MilestonesProps> {
   indexPatternId: string;
-  distribution: 'top-bottom' | 'top' | 'bottom';
   categoryField: string;
-  interval: 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'quarter' | 'year';
   labelField: string;
   maxDocuments: number;
-  orientation: 'horizontal' | 'vertical';
-  showLabels: boolean;
   sortField: string;
   sortOrder: 'asc' | 'desc';
 }

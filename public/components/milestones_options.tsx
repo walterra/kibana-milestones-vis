@@ -121,12 +121,12 @@ function MilestonesOptions({
       />
 
       <SelectOption
-        label={i18n.translate('visTypeMilestones.visParams.textIntervalLabel', {
+        label={i18n.translate('visTypeMilestones.visParams.textAggregateByLabel', {
           defaultMessage: 'Time interval',
         })}
         options={vis.type.editorConfig.collections.intervals}
-        paramName="interval"
-        value={stateParams.interval}
+        paramName="aggregateBy"
+        value={stateParams.aggregateBy}
         setValue={setValue}
       />
 
@@ -165,8 +165,8 @@ function MilestonesOptions({
         label={i18n.translate('visTypeMilestones.visParams.renderLabelsToggleLabel', {
           defaultMessage: 'Render labels',
         })}
-        paramName="showLabels"
-        value={stateParams.showLabels}
+        paramName="useLabels"
+        value={stateParams.useLabels}
         setValue={setValue}
       />
     </EuiPanel>
