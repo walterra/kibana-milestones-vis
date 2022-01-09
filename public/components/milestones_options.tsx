@@ -124,7 +124,7 @@ function MilestonesOptions({
         label={i18n.translate('visTypeMilestones.visParams.textAggregateByLabel', {
           defaultMessage: 'Time interval',
         })}
-        options={vis.type.editorConfig.collections.intervals}
+        options={vis.type.editorConfig.collections.aggregateBy}
         paramName="aggregateBy"
         value={stateParams.aggregateBy}
         setValue={setValue}

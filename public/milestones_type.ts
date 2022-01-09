@@ -26,11 +26,12 @@ import {
   VisTypeDefinition,
 } from '../../../src/plugins/visualizations/public';
 
-import { NONE_SELECTED, SCORE_FIELD } from '../common';
-
+import { milestonesVisConfigDefaults, milestonesVisConfigOptions } from './config';
 import { toExpressionAst } from './to_ast';
 import { MilestonesOptions } from './components/milestones_options';
 import { MilestonesVisParams } from './types';
+
+const mapOptionToCollection = <T = string[]>(d: T) => ({ text: d, value: d });
 
 export const createMilestonesTypeDefinition = (): VisTypeDefinition<MilestonesVisParams> => ({
   name: 'kibana_milestones_vis',
@@ -41,46 +42,17 @@ export const createMilestonesTypeDefinition = (): VisTypeDefinition<MilestonesVi
     defaultMessage: 'A timeline of events with labels.',
   }),
   visConfig: {
-    defaults: {
-      categoryField: NONE_SELECTED,
-      labelField: NONE_SELECTED,
-      distribution: 'top-bottom',
-      aggregateBy: 'minute',
-      maxDocuments: 10,
-      orientation: 'horizontal',
-      useLabels: true,
-      sortField: SCORE_FIELD,
-      sortOrder: 'desc',
-    },
+    defaults: milestonesVisConfigDefaults,
   },
   editorConfig: {
     optionsTemplate: MilestonesOptions,
     enableAutoApply: true,
     defaultSize: DefaultEditorSize.MEDIUM,
     collections: {
-      distributions: [
-        { text: 'top-bottom', value: 'top-bottom' },
-        { text: 'top', value: 'top' },
-        { text: 'bottom', value: 'bottom' },
-      ],
-      intervals: [
-        { text: 'second', value: 'second' },
-        { text: 'minute', value: 'minute' },
-        { text: 'hour', value: 'hour' },
-        { text: 'day', value: 'day' },
-        { text: 'week', value: 'week' },
-        { text: 'month', value: 'month' },
-        { text: 'quarter', value: 'quarter' },
-        { text: 'year', value: 'year' },
-      ],
-      orientation: [
-        { text: 'horizontal', value: 'horizontal' },
-        { text: 'vertical', value: 'vertical' },
-      ],
-      sortOrder: [
-        { text: 'asc', value: 'asc' },
-        { text: 'desc', value: 'desc' },
-      ],
+      distributions: milestonesVisConfigOptions.distribution.map(mapOptionToCollection),
+      aggregateBy: milestonesVisConfigOptions.aggregateBy.map(mapOptionToCollection),
+      orientation: milestonesVisConfigOptions.orientation.map(mapOptionToCollection),
+      sortOrder: milestonesVisConfigOptions.sortOrder.map(mapOptionToCollection),
     },
   },
   toExpressionAst,
