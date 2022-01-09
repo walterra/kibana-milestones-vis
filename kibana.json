@@ -6,5 +6,5 @@
   "ui": true,
   "requiredPlugins": ["data", "expressions", "visualizations"],
   "optionalPlugins": ["home","usageCollection"],
-  "requiredBundles": ["kibanaUtils", "visDefaultEditor"]
+  "requiredBundles": []
 }
