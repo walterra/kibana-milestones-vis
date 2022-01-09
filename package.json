@@ -1,7 +1,8 @@
 {
   "name": "kibana-milestones-vis",
-  "version": "7.12.0",
-  "private": false,
+  "version": "7.12.1",
+  "branch": "7.12",
+  "private": true,
   "description": "A d3 based timeline visualization kibana plugin.",
   "main": "index.js",
   "homepage": "https://github.com/walterra/kibana-milestones-vis",
@@ -26,7 +27,7 @@
     "d3": "3.5.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-milestones-vis": "^0.3.4-node14"
+    "react-milestones-vis": "^0.3.5-node14"
   },
   "resolutions": {
     "lodash": "^4.17.21"
