@@ -887,9 +887,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
-  version "1.0.30001296"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001296.tgz#d99f0f3bee66544800b93d261c4be55a35f1cec8"
-  integrity sha512-WfrtPEoNSoeATDlf4y3QvkwiELl9GyPLISV5GejTbbQRtQx4LhsXmc9IQ6XCL2d7UxCyEzToEZNMeqR79OUw8Q==
+  version "1.0.30001363"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001363.tgz"
+  integrity sha512-HpQhpzTGGPVMnCjIomjt+jvyUu8vNFo3TaDiZ/RcoTrlOq/5+tC8zHdsbgFB6MxmaY+jCpsH09aD80Bb4Ow3Sg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -1084,10 +1084,10 @@ d3-interpolate@1:
   dependencies:
     d3-color "1"
 
-d3-milestones@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.2.2.tgz#03dd1eb609117090b256f23ad5083f3e009fa5a0"
-  integrity sha512-YIoaYjtVKITwYraWxVlvhMiVWuw8L49AxfliW4N/Vqc9sZdg+quZj6n0GfKR52hejxBF21eNF1qOa2KWc8Fmlw==
+d3-milestones@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.4.0.tgz#ee283d57ecceb096a4090908f375cb85c8665cae"
+  integrity sha512-JGgHSAr4eqkjzpfHBE4HyvUBP7W6TDGzvDNPrWRCn48Ztng7zX9zxX1G5QR6FD+zujUA10yHp/KXsnov0H2NYA==
   dependencies:
     d3-array "^1.2.0"
     d3-collection "^1.0.4"
@@ -2805,12 +2805,12 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-milestones-vis@^0.3.4-node14:
-  version "0.3.4-node14"
-  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.3.4-node14.tgz#8c734995ee76afebd565755999354b390fd27daf"
-  integrity sha512-cZK6yjljyGA3+uNKjmbXWQUZx2V4SBFihQi5Gc6mMLSlTEqs5YnLJJRztWcjTSqCZ+qVoEM1slw+KwAF5nXA8Q==
+react-milestones-vis@^0.4.0-node14:
+  version "0.4.0-node14"
+  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.4.0-node14.tgz#500bbecc144fe97a9144dd96c4f9e4150e93af23"
+  integrity sha512-BC9cvj+cLYD6hvrRS+87ijXMtR8rl46WRlwtpk2zdbKue0ci/LFSfx5yccmC2yyGFiXB54fH3csAxD1KcBmeaQ==
   dependencies:
-    d3-milestones "^1.2.2"
+    d3-milestones "^1.4.0"
 
 react@^16.12.0:
   version "16.14.0"
