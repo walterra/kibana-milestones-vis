@@ -26,7 +26,7 @@
     "d3": "3.5.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-milestones-vis": "^0.4.1-node14"
+    "react-milestones-vis": "^0.4.2-node14"
   },
   "resolutions": {
     "lodash": "^4.17.21",
