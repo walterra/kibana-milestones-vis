@@ -1,11 +1,9 @@
 import { i18n } from '@kbn/i18n';
 
 import { DefaultEditorSize } from '../../../src/plugins/vis_default_editor/public';
-import {
-  VIS_EVENT_TO_TRIGGER,
-  VisGroups,
-  VisTypeDefinition,
-} from '../../../src/plugins/visualizations/public';
+// import { VIS_EVENT_TO_TRIGGER } from '../../../src/plugins/visualizations/public';
+// import type { VisGroups } from '../../../src/plugins/visualizations/public';
+import type { VisTypeDefinition } from '../../../src/plugins/visualizations/public';
 
 import { milestonesVisConfigDefaults, milestonesVisConfigOptions } from './config';
 import { toExpressionAst } from './to_ast';
@@ -18,7 +16,9 @@ export const createMilestonesTypeDefinition = (): VisTypeDefinition<MilestonesVi
   name: 'kibana_milestones_vis',
   title: 'Milestones',
   icon: 'visTagCloud',
-  group: VisGroups.PROMOTED,
+  // group: VisGroups.PROMOTED,
+  // @ts-expect-error
+  group: 'promoted',
   description: i18n.translate('milestones.vis.milestonesDescription', {
     defaultMessage: 'A timeline of events with labels.',
   }),
@@ -43,7 +43,8 @@ export const createMilestonesTypeDefinition = (): VisTypeDefinition<MilestonesVi
     showFilterBar: true,
   },
   getSupportedTriggers: () => {
-    return [VIS_EVENT_TO_TRIGGER.applyFilter];
+    // return [VIS_EVENT_TO_TRIGGER.applyFilter];
+    return ['FILTER_TRIGGER'];
   },
   requiresSearch: true,
 });

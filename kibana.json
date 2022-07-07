@@ -1,10 +1,15 @@
 {
   "id": "kibanaMilestonesVis",
-  "version": "7.13.0",
-  "kibanaVersion": "kibana",
+  "version": "kibana",
   "server": true,
   "ui": true,
-  "requiredPlugins": ["data", "expressions", "kibanaUtils", "visualizations", "visDefaultEditor"],
-  "optionalPlugins": ["home","usageCollection"],
+  "requiredPlugins": [
+    "data",
+    "expressions",
+    "kibanaUtils",
+    "visualizations",
+    "visDefaultEditor"
+  ],
+  "optionalPlugins": ["home", "usageCollection"],
   "requiredBundles": []
 }
