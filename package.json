@@ -29,7 +29,8 @@
     "react-milestones-vis": "^0.4.1-node14"
   },
   "resolutions": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.6"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
