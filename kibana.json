@@ -1,6 +1,7 @@
 {
   "id": "kibanaMilestonesVis",
-  "version": "kibana",
+  "version": "7.15.0",
+  "kibanaVersion": "kibana",
   "server": true,
   "ui": true,
   "requiredPlugins": [
