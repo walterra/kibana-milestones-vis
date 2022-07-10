@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react';
+import React, { FC } from 'react';
 import d3 from 'd3';
 import { Milestones } from 'react-milestones-vis';
 
@@ -40,21 +40,14 @@ const options = {
 };
 
 interface MilestonesVisualizationProps {
-  renderComplete: () => void;
   visData: RawVisData;
-  visConfig: MilestonesVisParams;
+  visParams: MilestonesVisParams;
 }
 
-export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
-  renderComplete,
-  visData,
-  visConfig,
-}) => {
-  useEffect(() => {
-    renderComplete();
-  }, []);
+export const MilestonesVisualization: FC<MilestonesVisualizationProps> = (props) => {
+  const { visData, visParams } = props;
 
-  const data = (visData.data || [])
+  const data = (visData?.data ?? [])
     // data prep
     .map((d) => {
       if (d.text === undefined) {
@@ -96,11 +89,11 @@ export const MilestonesVisualization: FC<MilestonesVisualizationProps> = ({
           text: options.mapping_text,
         }}
         parseTime={options.parseTime}
-        useLabels={visConfig.useLabels}
-        distribution={visConfig.distribution}
+        useLabels={visParams.useLabels}
+        distribution={visParams.distribution}
         optimize={options.optimize}
-        orientation={visConfig.orientation}
-        aggregateBy={visConfig.aggregateBy}
+        orientation={visParams.orientation}
+        aggregateBy={visParams.aggregateBy}
       />
     </div>
   );

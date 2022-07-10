@@ -1,7 +1,11 @@
 {
   "id": "kibanaMilestonesVis",
-  "version": "7.15.0",
+  "version": "7.16.0",
   "kibanaVersion": "kibana",
+  "owner": {
+    "name": "Walter Rafelsberger <walter.rafelsberger@elastic.co",
+    "githubTeam": "walterra"
+  },
   "server": true,
   "ui": true,
   "requiredPlugins": [

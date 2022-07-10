@@ -1,18 +1,19 @@
 import { get } from 'lodash';
 import { i18n } from '@kbn/i18n';
-import { ExecutionContextSearch } from '../../../src/plugins/data/public';
-import { Adapters } from '../../../src/plugins/inspector/common';
-import {
+import type { ExecutionContextSearch } from '../../../src/plugins/data/public';
+import type { Adapters } from '../../../src/plugins/inspector/common';
+import type {
   ExecutionContext,
   ExpressionFunctionDefinition,
   Render,
 } from '../../../src/plugins/expressions/public';
-import { MilestonesVisualizationDependencies } from './plugin';
+import type { MilestonesVisualizationDependencies } from './plugin';
 import { createMilestonesRequestHandler } from './milestones_request_handler';
-import { KibanaContext, TimeRange, Query } from '../../../src/plugins/data/public';
+import type { KibanaContext, TimeRange, Query } from '../../../src/plugins/data/public';
 
-import { RawVisData } from './milestones_visualization';
-import { MilestonesVisParams } from './types';
+import { EXPRESSION_NAME } from './constants';
+import type { RawVisData } from './milestones_visualization';
+import type { MilestonesVisParams } from './types';
 
 type Input = KibanaContext | { type: 'null' };
 type Output = Promise<Render<MilestonesRenderValue>>;
@@ -21,12 +22,12 @@ export type VisParams = Required<MilestonesVisParams>;
 
 export interface MilestonesRenderValue {
   visData: RawVisData;
-  visType: 'milestones';
-  visConfig: VisParams;
+  visType: typeof EXPRESSION_NAME;
+  visParams: VisParams;
 }
 
 export type MilestonesExpressionFunctionDefinition = ExpressionFunctionDefinition<
-  'milestones',
+  typeof EXPRESSION_NAME,
   Input,
   MilestonesVisParams,
   Output,
@@ -36,7 +37,7 @@ export type MilestonesExpressionFunctionDefinition = ExpressionFunctionDefinitio
 export const createMilestonesFn = (
   dependencies: MilestonesVisualizationDependencies
 ): MilestonesExpressionFunctionDefinition => ({
-  name: 'milestones',
+  name: EXPRESSION_NAME,
   type: 'render',
   inputTypes: ['kibana_context', 'null'],
   help: i18n.translate('visTypeMilestones.function.help', {
@@ -106,11 +107,11 @@ export const createMilestonesFn = (
 
     return {
       type: 'render',
-      as: 'milestones_vis',
+      as: EXPRESSION_NAME,
       value: {
         visData: response,
-        visType: 'milestones',
-        visConfig: args,
+        visType: EXPRESSION_NAME,
+        visParams: args,
       },
     };
   },

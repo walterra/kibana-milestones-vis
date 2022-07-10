@@ -4,7 +4,7 @@ import { DataPublicPluginSetup, DataPublicPluginStart } from '../../../src/plugi
 import { Plugin as ExpressionsPublicPlugin } from '../../../src/plugins/expressions/public';
 import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
 
-import { createMilestonesFn } from './milestones_fn';
+import { createMilestonesFn } from './milestones_function';
 import { createMilestonesTypeDefinition } from './milestones_type';
 import { getMilestonesVisRenderer } from './milestones_vis_renderer';
 import { setData } from './services';
@@ -55,4 +55,6 @@ export class MilestonesPlugin implements Plugin<void, void> {
   public start(core: CoreStart, { data }: MilestonesPluginStartDependencies) {
     setData(data);
   }
+
+  public stop() {}
 }
