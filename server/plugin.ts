@@ -17,6 +17,8 @@
  * under the License.
  */
 
+import type { DataRequestHandlerContext } from 'src/plugins/data/server';
+
 import {
   PluginInitializerContext,
   CoreSetup,
@@ -31,7 +33,7 @@ import {
   KibanaMilestonesVisPluginSetupDeps,
   KibanaMilestonesVisPluginStartDeps,
 } from './types';
-import { registerRoutes } from './routes';
+import { defineRoutes } from './routes';
 
 export class KibanaMilestonesVisPlugin
   implements
@@ -40,7 +42,8 @@ export class KibanaMilestonesVisPlugin
       KibanaMilestonesVisPluginStart,
       KibanaMilestonesVisPluginSetupDeps,
       KibanaMilestonesVisPluginStartDeps
-    > {
+    >
+{
   private readonly logger: Logger;
 
   constructor(initializerContext: PluginInitializerContext) {
@@ -49,10 +52,10 @@ export class KibanaMilestonesVisPlugin
 
   public setup(core: CoreSetup<KibanaMilestonesVisPluginStartDeps>) {
     this.logger.debug('kibanaMilestonesVis: Setup');
-    const router = core.http.createRouter();
+    const router = core.http.createRouter<DataRequestHandlerContext>();
 
     core.getStartServices().then(() => {
-      registerRoutes(router);
+      defineRoutes(router);
     });
 
     return {};

@@ -1,11 +1,15 @@
 import { get } from 'lodash';
-import { IEsSearchRequest } from 'src/plugins/data/server';
+
 import { schema } from '@kbn/config-schema';
-import { IEsSearchResponse } from 'src/plugins/data/common';
-import { IRouter } from '../../../../src/core/server';
+
+import type { DataRequestHandlerContext, IEsSearchRequest } from 'src/plugins/data/server';
+import type { IEsSearchResponse } from 'src/plugins/data/common';
+
+import type { IRouter } from '../../../../src/core/server';
+
 import { NONE_SELECTED, SERVER_SEARCH_ROUTE_PATH } from '../../common';
 
-export function registerServerSearchRoute(router: IRouter) {
+export function defineServerSearchRoute(router: IRouter<DataRequestHandlerContext>) {
   router.post(
     {
       path: SERVER_SEARCH_ROUTE_PATH,

@@ -1,1 +1,1 @@
-export { registerRoutes } from './register_routes';
+export { defineRoutes } from './define_routes';
