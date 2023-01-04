@@ -1,11 +1,12 @@
 {
   "id": "kibanaMilestonesVis",
-  "version": "7.16.0",
+  "version": "7.17.0",
   "kibanaVersion": "kibana",
   "owner": {
     "name": "Walter Rafelsberger <walter.rafelsberger@elastic.co",
     "githubTeam": "walterra"
   },
+  "description": "A d3 based timeline visualization kibana plugin.",
   "server": true,
   "ui": true,
   "requiredPlugins": [
