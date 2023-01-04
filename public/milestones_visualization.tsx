@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import d3 from 'd3';
+import { nest } from 'd3-collection';
 import { Milestones } from 'react-milestones-vis';
 
 import { MilestonesVisParams } from './types';
@@ -76,8 +76,7 @@ export const MilestonesVisualization: FC<MilestonesVisualizationProps> = (props)
       <Milestones
         data={
           isUsingCategories(data)
-            ? d3
-                .nest<Required<DataItem>>()
+            ? nest<Required<DataItem>>()
                 .key((d) => d.category)
                 .entries(data)
             : data
