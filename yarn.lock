@@ -2805,10 +2805,10 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-milestones-vis@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.5.0.tgz#3a7d52f58f1e88f5f3d1c4d3f2e71d469d71fda4"
-  integrity sha512-KiuWjDMOAXER/MstwEcgmwVy8Dvzx7mgsfiL+XCqrR5HIHuJFFQfc/zdjqJwldTBlkxc/LyLK/kpZjHX8W8HUQ==
+react-milestones-vis@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.6.0.tgz#fefcf9c45168e395a62b6a634eee36a90470b729"
+  integrity sha512-mt2fhHlmXYWqeBW/N1gZnjmJKpShKbOcf67Kd/mQf45ZHd/C/rGJm1cRV9QW9J1K+lF1s2vKoWUGC5DVeYz7lw==
   dependencies:
     d3-milestones "^1.4.2"
 
