@@ -1,6 +1,6 @@
 {
   "name": "kibana-milestones-vis",
-  "version": "7.17.2",
+  "version": "7.17.3",
   "private": false,
   "description": "A d3 based timeline visualization kibana plugin.",
   "main": "index.js",
