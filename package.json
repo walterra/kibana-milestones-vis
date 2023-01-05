@@ -26,7 +26,7 @@
     "d3-collection": "^1.0.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-milestones-vis": "^0.6.2"
+    "react-milestones-vis": "^0.6.4"
   },
   "resolutions": {
     "decode-uri-component": "^0.2.1",
