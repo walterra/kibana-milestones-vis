@@ -1091,10 +1091,10 @@ d3-collection@^1.0.7:
   dependencies:
     d3-color "1 - 3"
 
-d3-milestones@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.4.4.tgz#4c7b56e201893d34eea7fa4ed61632b4260ff474"
-  integrity sha512-UOSk5N/qwXXOqSYDNp1Fw5QSguUV/uJ2K5Br1uAuoNSlp9TdtBKoPOHS7oavh3R4NSgUvXRqvAQFab83SmGkVw==
+d3-milestones@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/d3-milestones/-/d3-milestones-1.4.5.tgz#5b40d8e9e20a77c4827eda1368e7fbca647a10cf"
+  integrity sha512-6BeXDVXAU8mzgdksoCqGVg7idjINTZRjoVXOUXtj05c4izmmkVwEdLzj0CQWcQJ8oHuGO7+KJ0p7gxeRXa2iNw==
   dependencies:
     d3-array "^3.2.0"
     d3-collection "^1.0.7"
@@ -2810,12 +2810,12 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-milestones-vis@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.6.1.tgz#52d9c5606f95267f2f881cafc66f13313aad0973"
-  integrity sha512-lI6ZWfEtzKBuB7+uzRBZC2RI6wVFz3wLlmZGiQnSgSSv6WQ00pElnCcr9YDEv5Q71k01eQKWnqpeDbcO87nn/A==
+react-milestones-vis@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-milestones-vis/-/react-milestones-vis-0.6.2.tgz#137f07977378d55f1190ffcbe1e5fcef45fa0c6a"
+  integrity sha512-dlPMmvJU/+ZteERqtozSXkfmRRYdhH8fWRZ5M/122tbr8VWv0y0kIsoi/jtmCG3E+KMMYvSs7cwp2x6aVvMRKw==
   dependencies:
-    d3-milestones "^1.4.4"
+    d3-milestones "^1.4.5"
 
 react@^16.12.0:
   version "16.14.0"
