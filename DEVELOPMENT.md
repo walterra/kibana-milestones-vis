@@ -26,7 +26,7 @@ cd ~/dev/kibana-7.x-git/kibana
 git fetch --all --tags
 
 # Check out the release in Kibana
-git checkout v7.17.6
+git checkout v7.17.7
 
 # Switch to updated node-js if necessary
 nvm use
@@ -55,22 +55,22 @@ yarn kbn bootstrap
 yarn build
 
 # Next, download, install and run the corresponding Elasticsearch
-mkdir ~/dev/elasticsearch-7.17.6-release
-cd ~/dev/elasticsearch-7.17.6-release
-curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.6-darwin-x86_64.tar.gz
-gunzip -c elasticsearch-7.17.6-darwin-x86_64.tar.gz | tar xopf -
-cd elasticsearch-7.17.6
+mkdir ~/dev/elasticsearch-7.17.7-release
+cd ~/dev/elasticsearch-7.17.7-release
+curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.17.7-darwin-x86_64.tar.gz
+gunzip -c elasticsearch-7.17.7-darwin-x86_64.tar.gz | tar xopf -
+cd elasticsearch-7.17.7
 ./bin/elasticsearch
 
 # Next, in another terminal tab, download and install the corresponding Kibana release to test the build
-mkdir ~/dev/kibana-7.17.6-release
-cd ~/dev/kibana-7.17.6-release/
-curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.17.6-darwin-x86_64.tar.gz
-gunzip -c kibana-7.17.6-darwin-x86_64.tar.gz | tar xopf -
-cd kibana-7.17.6-darwin-x86_64
+mkdir ~/dev/kibana-7.17.7-release
+cd ~/dev/kibana-7.17.7-release/
+curl -O https://artifacts.elastic.co/downloads/kibana/kibana-7.17.7-darwin-x86_64.tar.gz
+gunzip -c kibana-7.17.7-darwin-x86_64.tar.gz | tar xopf -
+cd kibana-7.17.7-darwin-x86_64
 
 # Install the built plugin
-./bin/kibana-plugin install 'file:///<your-path>/kibana-7.x-git/kibana/plugins/kibana_milestones_vis/build/kibanaMilestonesVis-7.17.6.zip'
+./bin/kibana-plugin install 'file:///<your-path>/kibana-7.x-git/kibana/plugins/kibana_milestones_vis/build/kibanaMilestonesVis-7.17.7.zip'
 
 # Start Kibana and test the UI if the plugin works.
 # Use Kibana's `flights` sample dataset and create a milestones visualization.
@@ -81,15 +81,15 @@ cd ~/dev/kibana-7.x-git/kibana/plugins/kibana_milestones_vis
 git add DEVELOPMENT.md
 git add README.md
 git add package.json
-git commit -m "Bump version to 7.17.6."
-git tag v7.17.6
+git commit -m "Bump version to 7.17.7."
+git tag v7.17.7
 git push origin 7.17
 git push --tags
 
 # On Github, edit the new release at
-# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.17.6
-# Use `Kibana v7.17.6 compatibility release.` as the release text.
-# Add the build file `kibanaMilestonesVis-7.17.6.zip` to the releases' binaries.
+# https://github.com/walterra/kibana-milestones-vis/releases/new?tag=v7.17.7
+# Use `Kibana v7.17.7 compatibility release.` as the release text.
+# Add the build file `kibanaMilestonesVis-7.17.7.zip` to the releases' binaries.
 
 # Almost done! Before the next release, a little cleanup: Just delete the temporary plugin you create so you can create another one for comparison for the next release.
 rm -r ~/dev/kibana-7.x-git/kibana/plugins/plugin_tmp
