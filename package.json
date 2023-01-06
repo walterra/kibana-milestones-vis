@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "build": "yarn plugin-helpers build",
+    "ingest-sample-data": "node scripts/ingest_sample_data",
     "plugin-helpers": "node ../../scripts/plugin_helpers",
     "kbn": "node ../../scripts/kbn",
     "test": "yarn jest"
@@ -36,6 +37,7 @@
     "minimist": "^1.2.6"
   },
   "devDependencies": {
+    "@elastic/elasticsearch": "^7.17.0",
     "@types/d3-collection": "^1.0.7",
     "@types/jest": "^26.0.14",
     "jest": "^26.6.3",
