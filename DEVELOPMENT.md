@@ -1,20 +1,18 @@
 # Development
 
-See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following npm tasks.
-
-See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment.
+See the [kibana contributing guide](https://github.com/elastic/kibana/blob/master/CONTRIBUTING.md) for instructions setting up your development environment. Once you have completed that, use the following commands.
 
 ## Scripts
 
 <dl>
   <dt><code>yarn kbn bootstrap</code></dt>
-  <dd>Execute this to install node_modules and setup the dependencies in your plugin and in Kibana</dd>
+  <dd>Execute this to install `node_modules` and setup the dependencies in your plugin and in Kibana.</dd>
 
-  <dt><code>yarn plugin-helpers build</code></dt>
-  <dd>Execute this to create a distributable version of this plugin that can be installed in Kibana</dd>
+  <dt><code>yarn start</code></dt>
+  <dd>Execute this to start the development version of Kibana to work on your plugin.</dd>
 </dl>
 
-## Release Process
+## Build and release Process
 
 This is the process for producing a release for a new minor version that doesn't include any necessary changes due to changing Kibana APIs.
 
